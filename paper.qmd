@@ -1,0 +1,436 @@
+---
+execute: 
+  echo: false
+  warning: false
+  
+format: docx
+---
+
+```{r}
+
+pacman::p_load(summarytools,
+               skimr,
+               psych,
+               rempsyc,
+               knitr,
+               kableExtra,
+               gtsummary)
+source("scripts/01_preparation.R")
+
+options(digits = 2)
+
+```
+
+```{r}
+
+var_label(study1$exposure) <- "Perceived Misinformation Exposure"
+var_label(study1$sharing) <- "Perceived Misinformation Sharing"
+var_label(study1$alg_aware) <- "Algorithmic Awareness"
+var_label(study1$wsp) <- "Weekly Whatsapp use"
+var_label(study1$ig) <- "Weekly Instagram use"
+var_label(study1$fb) <- "Weekly Facebook use"
+var_label(study1$yt) <- "Weekly Youtube use"
+var_label(study1$tw) <- "Weekly Twitter use"
+var_label(study1$tiktok) <- "Weekly Tiktok use"
+var_label(study1$age) <- "Age"
+var_label(study1$gender) <- "Gender"
+var_label(study1$rm) <- "Metropolitan region"
+var_label(study1$educ_level) <- "Educational level"
+
+
+var_label(study2$exposure) <- "Perceived Misinformation Exposure"
+var_label(study2$sharing) <- "Perceived Misinformation Sharing"
+var_label(study2$obj_know) <- "Objective news knowledge"
+var_label(study2$subj_know) <- "Subjective news knowledge"
+var_label(study2$subj_know_def) <- "Knowledge overconfidence"
+var_label(study2$alg_aware) <- "Algorithmic Awareness"
+var_label(study2$counteract_algorithm) <- "Algorithmic actions/counteractions"
+var_label(study2$wsp) <- "Weekly Whatsapp use"
+var_label(study2$ig) <- "Weekly Instagram use"
+var_label(study2$fb) <- "Weekly Facebook use"
+var_label(study2$yt) <- "Weekly Youtube use"
+var_label(study2$tw) <- "Weekly Twitter use"
+var_label(study2$tiktok) <- "Weekly Tiktok use"
+var_label(study2$age) <- "Age"
+var_label(study2$gender) <- "Gender"
+var_label(study2$rm) <- "Metropolitan region"
+var_label(study2$educ_level) <- "Educational level"
+
+study1|>
+  mutate(educ_level = set_value_labels(educ_level, c(
+    "Primary education or less" = 1,
+    "Incomplete secondary education" = 2,
+    "Complete secondary education" = 3,
+    "Post-secondary education" = 4,
+    "College education or more" = 5
+    )
+  )
+)
+
+study2|>
+  mutate(educ_level = set_value_labels(educ_level, c(
+    "Primary education or less" = 1,
+    "Incomplete secondary education" = 2,
+    "Complete secondary education" = 3,
+    "Post-secondary education" = 4,
+    "College education or more" = 5
+    )
+  )
+)
+```
+
+
+```{r}
+library(knitr)
+
+data.frame(
+  variable = c(
+    "Perceived misinformation exposure",
+    "Perceived misinformation sharing",
+    "Algorithmic Awareness",
+    "Weekly Whatsapp use",
+    "Weekly Instagram use",
+    "Weekly Facebook use",
+    "Weekly Youtube use",
+    "Weekly Twitter use",
+    "Weekly Tiktok use",
+    "Age (continuous)",
+    "Gender",
+    "Metropolitan region",
+    "Educational level"
+  ),
+  
+  descr = c(
+    paste0(round(mean(study1$exposure, na.rm = TRUE), 2), " (", round(sd(study1$exposure, na.rm = TRUE), 2), ")"),
+    paste0(round(mean(study1$sharing, na.rm = TRUE), 2), " (", round(sd(study1$sharing, na.rm = TRUE), 2), ")"),
+    paste0(round(mean(study1$alg_aware, na.rm = TRUE), 2), " (", round(sd(study1$alg_aware, na.rm = TRUE), 2), ")"),
+    paste("1:", sum(study1$wsp == 1), "0:", sum(study1$wsp == 0)),
+    paste("1:", sum(study1$ig == 1), "0:", sum(study1$ig == 0)),
+    paste("1:", sum(study1$fb == 1), "0:", sum(study1$fb == 0)),
+    paste("1:", sum(study1$yt == 1), "0:", sum(study1$yt == 0)),
+    paste("1:", sum(study1$tw == 1), "0:", sum(study1$tw == 0)),
+    paste("1:", sum(study1$tiktok == 1), "0:", sum(study1$tiktok == 0)),
+    paste0(round(mean(study1$age, na.rm = TRUE), 2), " (", round(sd(study1$age, na.rm = TRUE), 2), ")"),
+    paste("Female:", sum(study1$gender == 0), "Male:", sum(study1$gender == 1)),
+    paste("Rm:", sum(study1$rm == 1), "Other:", sum(study1$rm == 0)),
+    paste("Primary education or less:", sum(study1$educ_level == 1, na.rm = TRUE),
+          "Incomplete secondary education:", sum(study1$educ_level == 2, na.rm = TRUE),
+          "Complete secondary education:", sum(study1$educ_level == 3, na.rm = TRUE),
+          "Post-secondary/technical education:", sum(study1$educ_level == 4, na.rm = TRUE),
+          "College education or more:", sum(study1$educ_level == 5, na.rm = TRUE)
+          )
+  ),
+  
+  min = round(c(
+    min(study1$exposure, na.rm = TRUE),
+    min(study1$sharing, na.rm = TRUE),
+    min(study1$alg_aware, na.rm = TRUE),
+    min(study1$wsp, na.rm = TRUE),
+    min(study1$ig, na.rm = TRUE),
+    min(study1$fb, na.rm = TRUE),
+    min(study1$yt, na.rm = TRUE),
+    min(study1$tw, na.rm = TRUE),
+    min(study1$tiktok, na.rm = TRUE),
+    min(study1$age, na.rm = TRUE),
+    min(study1$gender, na.rm = TRUE),
+    min(study1$rm, na.rm = TRUE),
+    min(study1$educ_level, na.rm = TRUE)
+  ), 2),
+    
+  max = round(c(
+    max(study1$exposure, na.rm = TRUE),
+    max(study1$sharing, na.rm = TRUE),
+    max(study1$alg_aware, na.rm = TRUE),
+    max(study1$wsp, na.rm = TRUE),
+    max(study1$ig, na.rm = TRUE),
+    max(study1$fb, na.rm = TRUE),
+    max(study1$yt, na.rm = TRUE),
+    max(study1$tw, na.rm = TRUE),
+    max(study1$tiktok, na.rm = TRUE),
+    max(study1$age, na.rm = TRUE),
+    max(study1$gender, na.rm = TRUE),
+    max(study1$rm, na.rm = TRUE),
+    max(study1$educ_level, na.rm = TRUE)
+  ), 2),
+  
+  cronbach = c("", "",
+               round(psych::alpha(study1[, c("content_filt", "human_int", "ethic")])$total$raw_alpha, 2),
+               "", "", "", "", "", "", "", "", "", ""),
+  
+  missing = c(
+    paste0(round(sum(is.na(study1$exposure)) / nrow(study1) * 100, 2), "%"),
+    paste0(round(sum(is.na(study1$sharing)) / nrow(study1) * 100, 2), "%"),
+    paste0(round(sum(is.na(study1$alg_aware)) / nrow(study1) * 100, 2), "%"),
+    paste0(round(sum(is.na(study1$wsp)) / nrow(study1) * 100, 2), "%"),
+    paste0(round(sum(is.na(study1$ig)) / nrow(study1) * 100, 2), "%"),
+    paste0(round(sum(is.na(study1$fb)) / nrow(study1) * 100, 2), "%"),
+    paste0(round(sum(is.na(study1$yt)) / nrow(study1) * 100, 2), "%"),
+    paste0(round(sum(is.na(study1$tw)) / nrow(study1) * 100, 2), "%"),
+    paste0(round(sum(is.na(study1$tiktok)) / nrow(study1) * 100, 2), "%"),
+    paste0(round(sum(is.na(study1$age)) / nrow(study1) * 100, 2), "%"),
+    paste0(round(sum(is.na(study1$gender)) / nrow(study1) * 100, 2), "%"),
+    paste0(round(sum(is.na(study1$rm)) / nrow(study1) * 100, 2), "%"),
+    paste0(round(sum(is.na(study1$educ_level)) / nrow(study1) * 100, 2), "%")
+  )
+) |>
+  kable(
+    col.names = c("Variable", "Mean (SD)/Prop.", "Min.", "Max.", "Cronbach's Alpha", "Missings (%)")
+  )
+
+```
+
+
+```{r}
+
+data.frame(
+  variable = c(
+    "Perceived misinformation exposure",
+    "Perceived misinformation sharing",
+    "Objective news knowledge",
+    "Subjective news knowledge",
+    "Overconfidence knowledge",
+    "Algorithmic Awareness",
+    "Algorithmic actions/counteractions",
+    "Weekly Whatsapp use",
+    "Weekly Instagram use",
+    "Weekly Facebook use",
+    "Weekly Youtube use",
+    "Weekly Twitter use",
+    "Weekly Tiktok use",
+    "Age (continuous)",
+    "Gender",
+    "Metropolitan region",
+    "Educational level"
+  ),
+  
+  descr = c(
+    paste0(round(mean(study2$exposure, na.rm = TRUE), 2), " (", round(sd(study2$exposure, na.rm = TRUE), 2), ")"),
+    paste0(round(mean(study2$sharing, na.rm = TRUE), 2), " (", round(sd(study2$sharing, na.rm = TRUE), 2), ")"),
+    paste0(round(mean(study2$alg_aware, na.rm = TRUE), 2), " (", round(sd(study2$alg_aware, na.rm = TRUE), 2), ")"),
+    paste0(round(mean(study2$counteract_algorithm, na.rm = TRUE), 2), " (", round(sd(study2$counteract_algorithm, na.rm = TRUE), 2), ")"),
+    paste0(round(mean(study2$obj_know, na.rm = TRUE), 2), " (", round(sd(study2$exposure, na.rm = TRUE), 2), ")"),
+    paste0(round(mean(study2$subj_know, na.rm = TRUE), 2), " (", round(sd(study2$exposure, na.rm = TRUE), 2), ")"),
+    paste0(round(mean(study2$subj_know_def, na.rm = TRUE), 2), " (", round(sd(study2$exposure, na.rm = TRUE), 2), ")"),
+    paste("1:", sum(study2$wsp == 1, na.rm = TRUE), "0:", sum(study2$wsp == 0, na.rm = TRUE)),
+    paste("1:", sum(study2$ig == 1, na.rm = TRUE), "0:", sum(study2$ig == 0, na.rm = TRUE)),
+    paste("1:", sum(study2$fb == 1, na.rm = TRUE), "0:", sum(study2$fb == 0, na.rm = TRUE)),
+    paste("1:", sum(study2$yt == 1, na.rm = TRUE), "0:", sum(study2$yt == 0, na.rm = TRUE)),
+    paste("1:", sum(study2$tw == 1, na.rm = TRUE), "0:", sum(study2$tw == 0, na.rm = TRUE)),
+    paste("1:", sum(study2$tiktok == 1, na.rm = TRUE), "0:", sum(study2$tiktok == 0, na.rm = TRUE)),
+    paste0(round(mean(study2$age, na.rm = TRUE), 2), " (", round(sd(study2$age, na.rm = TRUE), 2), ")"),
+    paste("Female:", sum(study2$gender == 0), "Male:", sum(study2$gender == 1)),
+    paste("Rm:", sum(study2$rm == 1), "Other:", sum(study2$rm == 0)),
+    paste("Primary education or less:", sum(study2$educ_level == 1, na.rm = TRUE),
+          "Incomplete secondary education:", sum(study2$educ_level == 2, na.rm = TRUE),
+          "Complete secondary education:", sum(study2$educ_level == 3, na.rm = TRUE),
+          "Post-secondary/technical education:", sum(study2$educ_level == 4, na.rm = TRUE),
+          "College education or more:", sum(study2$educ_level == 5, na.rm = TRUE)
+          )
+  ),
+  
+  min = round(c(
+    min(study2$exposure, na.rm = TRUE),
+    min(study2$sharing, na.rm = TRUE),
+    min(study2$obj_know, na.rm = TRUE),
+    min(study2$subj_know, na.rm = TRUE),
+    min(study2$subj_know_def, na.rm = TRUE),
+    min(study2$alg_aware, na.rm = TRUE),
+    min(study2$counteract_algorithm, na.rm = TRUE),
+    min(study2$wsp, na.rm = TRUE),
+    min(study2$ig, na.rm = TRUE),
+    min(study2$fb, na.rm = TRUE),
+    min(study2$yt, na.rm = TRUE),
+    min(study2$tw, na.rm = TRUE),
+    min(study2$tiktok, na.rm = TRUE),
+    min(study2$age, na.rm = TRUE),
+    min(study2$gender, na.rm = TRUE),
+    min(study2$rm, na.rm = TRUE),
+    min(study2$educ_level, na.rm = TRUE)
+  ), 2),
+    
+  max = round(c(
+    max(study2$exposure, na.rm = TRUE),
+    max(study2$sharing, na.rm = TRUE),
+    max(study2$obj_know, na.rm = TRUE),
+    max(study2$subj_know, na.rm = TRUE),
+    max(study2$subj_know_def, na.rm = TRUE),
+    max(study2$alg_aware, na.rm = TRUE),
+    max(study2$counteract_algorithm, na.rm = TRUE),
+    max(study2$wsp, na.rm = TRUE),
+    max(study2$ig, na.rm = TRUE),
+    max(study2$fb, na.rm = TRUE),
+    max(study2$yt, na.rm = TRUE),
+    max(study2$tw, na.rm = TRUE),
+    max(study2$tiktok, na.rm = TRUE),
+    max(study2$age, na.rm = TRUE),
+    max(study2$gender, na.rm = TRUE),
+    max(study2$rm, na.rm = TRUE),
+    max(study2$educ_level, na.rm = TRUE)
+  ), 2),
+  
+  cronbach = c("", "", "", 
+               round(psych::alpha(study2[, c("p40", "p42", "p44", "p46", "p48", "p50")])$total$raw_alpha, 2),
+               round(psych::alpha(study2[, c("content_filt", "human_int", "ethic")])$total$raw_alpha, 2),
+               "", "", "", "", "", "", "", "", "", "", "", ""),
+  
+  missing = c(
+    paste0(round(sum(is.na(study2$exposure)) / nrow(study2) * 100, 2), "%"),
+    paste0(round(sum(is.na(study2$sharing)) / nrow(study2) * 100, 2), "%"),
+    paste0(round(sum(is.na(study2$obj_know)) / nrow(study2) * 100, 2), "%"),
+    paste0(round(sum(is.na(study2$subj_know)) / nrow(study2) * 100, 2), "%"),
+    paste0(round(sum(is.na(study2$subj_know_def)) / nrow(study2) * 100, 2), "%"),
+    paste0(round(sum(is.na(study2$alg_aware)) / nrow(study2) * 100, 2), "%"),
+    paste0(round(sum(is.na(study2$counteract_algorithm)) / nrow(study2) * 100, 2), "%"),
+    paste0(round(sum(is.na(study2$wsp)) / nrow(study2) * 100, 2), "%"),
+    paste0(round(sum(is.na(study2$ig)) / nrow(study2) * 100, 2), "%"),
+    paste0(round(sum(is.na(study2$fb)) / nrow(study2) * 100, 2), "%"),
+    paste0(round(sum(is.na(study2$yt)) / nrow(study2) * 100, 2), "%"),
+    paste0(round(sum(is.na(study2$tw)) / nrow(study2) * 100, 2), "%"),
+    paste0(round(sum(is.na(study2$tiktok)) / nrow(study2) * 100, 2), "%"),
+    paste0(round(sum(is.na(study2$age)) / nrow(study2) * 100, 2), "%"),
+    paste0(round(sum(is.na(study2$gender)) / nrow(study2) * 100, 2), "%"),
+    paste0(round(sum(is.na(study2$rm)) / nrow(study2) * 100, 2), "%"),
+    paste0(round(sum(is.na(study2$educ_level)) / nrow(study2) * 100, 2), "%")
+  )
+) |>
+  kable(
+    col.names = c("Variable", "Mean (SD)/Prop.", "Min.", "Max.", "Cronbach's Alpha", "Missings (%)")
+  )
+
+```
+
+# Modelos
+
+```{r}
+study1_model <- study1|>
+  mutate_at(.vars = vars(gender,rm),
+            .funs = list(~to_label(.)))|>
+  mutate_at(.vars = vars(ppal_ocupation,educ_level),
+            .funs = list(~to_numeric(.)))
+
+study2_model <- study2|>
+  mutate_at(.vars = vars(gender,rm),
+            .funs = list(~to_label(.)))|>
+  mutate_at(.vars = vars(ppal_ocupation,educ_level),
+            .funs = list(~to_numeric(.)))
+```
+
+```{r}
+exposure_a <- lm(exposure ~ 
+                   alg_aware+
+                   age+gender+rm+educ_level+
+                   wsp+ig+fb+yt+tw+tiktok,
+                  data = study1_model)
+
+exposure_b <- lm(exposure ~ 
+                   alg_aware+
+                   age+gender+rm+educ_level+
+                   wsp+ig+fb+yt+tw+tiktok,
+                  data = study2_model)
+
+
+sjPlot::tab_model(list(exposure_a,exposure_b), 
+                  show.ci=FALSE, 
+                  p.style = "stars", 
+                  dv.labels = c("Study 1","Study 2"),
+                  pred.labels = c("(Intercept)",
+                                  "Alg. Awareness",
+                                  "Age",
+                                  "Gender (Women = 1)",
+                                  "Region (MR = 1)", 
+                                  "Educational level",
+                                  "Whatsapp weekly use", 
+                                  "Instagram weekly use", 
+                                  "Facebook weekly use", 
+                                  "Youtube weekly use", 
+                                  "Twitter weekly use", 
+                                  "TikTok weekly use"),
+                  string.pred = "Predictors", 
+                  string.est = "β",
+                  show.se = T,
+                  title = "Table 1. OLS model Perceived misinformation exposure")
+```
+
+```{r}
+sharing_a <- glm(sharing~
+                   alg_aware+
+                   age+gender+rm+educ_level+
+                   wsp+ig+fb+yt+tw+tiktok,                  
+                   data = study1_model,family = "binomial")
+
+sharing_b <- glm(sharing~
+                   alg_aware+
+                   age+gender+rm+educ_level+
+                   wsp+ig+fb+yt+tw+tiktok,                  
+                   data = study2_model,family = "binomial")
+
+sjPlot::tab_model(list(sharing_a,sharing_b), 
+                  show.ci=FALSE, 
+                  p.style = "stars", 
+                  dv.labels = c("Study 1","Study 2"),
+                  pred.labels = c("(Intercept)",
+                                  "Alg. Awareness",
+                                  "Age",
+                                  "Gender (Women = 1)",
+                                  "Metropolitan Region", 
+                                  "Educational level",
+                                  "Whatsapp weekly use", 
+                                  "Instagram weekly use", 
+                                  "Facebook weekly use", 
+                                  "Youtube weekly use", 
+                                  "Twitter weekly use", 
+                                  "TikTok weekly use"),
+                  string.pred = "Predictors", 
+                  string.est = "β (Logit)",
+                  show.se = T,
+                  title = "Table 2. Logistic model Perceived misinformation sharing",
+                  transform = NULL)
+```
+
+
+```{r}
+exposure_3b <- lm(exposure ~ alg_aware+counteract_algorithm+
+                    age+gender+rm+educ_level+
+                    wsp+ig+fb+yt+tw+tiktok,
+                data=study2_model)
+
+obj_know_model<-lm(obj_know ~ alg_aware+counteract_algorithm+
+                     age+gender+rm+educ_level+
+                     wsp+ig+fb+yt+tw+tiktok,
+                   data=study2_model)
+
+subj_know_model <- lm(subj_know ~ alg_aware+counteract_algorithm+
+                    age+gender+rm+educ_level+
+                      wsp+ig+fb+yt+tw+tiktok,
+                  data=study2_model)
+
+score_model <- lm(subj_know_def ~ alg_aware+counteract_algorithm+
+                        age+gender+rm+educ_level+
+                    wsp+ig+fb+yt+tw+tiktok,
+                      data=study2_model)
+
+sjPlot::tab_model(exposure_3b,obj_know_model,subj_know_model,score_model,
+          show.ci = FALSE,
+          p.style = "stars",
+          dv.labels = c("Perceived Misinformation Exposure",
+                        "Objective news knowledge",
+                        "Subjective news knowledge",
+                        "Knowledge overconfidence"),
+          pred.labels = c("(Intercept)",
+                          "Alg. Awareness",
+                          "Alg. counteractions",
+                          "Age",
+                          "Gender (Women = 1)",
+                          "Metropolitan Region", 
+                          "Educational level",
+                          "Whatsapp weekly use", 
+                          "Instagram weekly use", 
+                          "Facebook weekly use", 
+                          "Youtube weekly use", 
+                          "Twitter weekly use", 
+                          "TikTok weekly use"),
+          show.se = T,
+          string.est = "β",
+          title = "Table 3. OLS models Study 2")
+```
+

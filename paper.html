@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.361">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>paper</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="paper_files/libs/clipboard/clipboard.min.js"></script>
+<script src="paper_files/libs/quarto-html/quarto.js"></script>
+<script src="paper_files/libs/quarto-html/popper.min.js"></script>
+<script src="paper_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="paper_files/libs/quarto-html/anchor.min.js"></script>
+<link href="paper_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="paper_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="paper_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="paper_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="paper_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,200 × 21
+   exposure        sharing anti_fake_news content_filt human_int ethic   alg_lit
+   &lt;dbl+lbl&gt;       &lt;dbl+l&gt;          &lt;dbl&gt; &lt;dbl+lbl&gt;    &lt;dbl+lbl&gt; &lt;dbl+l&gt;   &lt;dbl&gt;
+ 1     3 [Al meno… 0 [Nev…           2    5 [Completa… 5 [Compl… 5 [Com…       1
+ 2 NA(9) [NS-NR]   0 [Nev…           1    1 [Nada con… 1 [Nada … 1 [Nad…       0
+ 3     1 [Nunca o… 0 [Nev…           1    1 [Nada con… 1 [Nada … 1 [Nad…       0
+ 4     1 [Nunca o… 1 [Hav…           2.33 1 [Nada con… 1 [Nada … 1 [Nad…       1
+ 5     2 [Dos o t… 0 [Nev…           2    1 [Nada con… 1 [Nada … 1 [Nad…       0
+ 6     4 [Todos l… 0 [Nev…           3.33 5 [Completa… 5 [Compl… 5 [Com…       1
+ 7     1 [Nunca o… 0 [Nev…           1    5 [Completa… 5 [Compl… 5 [Com…       1
+ 8     4 [Todos l… 0 [Nev…           1    5 [Completa… 5 [Compl… 5 [Com…       1
+ 9     3 [Al meno… 0 [Nev…           1.33 3 [3]        5 [Compl… 4 [4]         0
+10     1 [Nunca o… 0 [Nev…           1    4 [4]        3 [3]     4 [4]        NA
+# ℹ 1,190 more rows
+# ℹ 14 more variables: alg_aware &lt;dbl&gt;, fb &lt;dbl+lbl&gt;, ig &lt;dbl+lbl&gt;,
+#   wsp &lt;dbl+lbl&gt;, yt &lt;dbl+lbl&gt;, tw &lt;dbl+lbl&gt;, tiktok &lt;dbl+lbl&gt;, age &lt;dbl&gt;,
+#   age_range &lt;dbl+lbl&gt;, gender &lt;dbl+lbl&gt;, educ_level &lt;dbl+lbl&gt;,
+#   ppal_educ_level &lt;dbl+lbl&gt;, ppal_ocupation &lt;dbl+lbl&gt;, rm &lt;dbl+lbl&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,265 × 38
+   exposure         sharing vulnerability info_type obj_know obj_know3 subj_know
+   &lt;dbl+lbl&gt;        &lt;dbl+l&gt; &lt;dbl+lbl&gt;     &lt;dbl+lbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+ 1 4 [Casi siempre] 1 [Hav… 4 [De acuerd… 3 [Infor…        2         2      4   
+ 2 4 [Casi siempre] 1 [Hav… 4 [De acuerd… 1 [Uninf…        0         3      3.33
+ 3 4 [Casi siempre] 0 [Nev… 4 [De acuerd… 1 [Uninf…        0         1      5   
+ 4 3 [A veces]      0 [Nev… 4 [De acuerd… 3 [Infor…        6         6      3.83
+ 5 3 [A veces]      0 [Nev… 4 [De acuerd… 3 [Infor…        2         3      3.25
+ 6 3 [A veces]      0 [Nev… 4 [De acuerd… 2 [Misin…       -1         2      3.60
+ 7 5 [Siempre]      1 [Hav… 3 [Ni de acu… 3 [Infor…        1         2      3.33
+ 8 2 [Casi nunca]   0 [Nev… 4 [De acuerd… 3 [Infor…        1         1      4   
+ 9 4 [Casi siempre] 1 [Hav… 5 [Muy de ac… 3 [Infor…        3         4      5   
+10 4 [Casi siempre] 1 [Hav… 4 [De acuerd… 1 [Uninf…        0         2      3   
+# ℹ 2,255 more rows
+# ℹ 31 more variables: subj_know_def &lt;dbl&gt;, content_filt &lt;dbl+lbl&gt;,
+#   human_int &lt;dbl+lbl&gt;, ethic &lt;dbl+lbl&gt;, alg_lit &lt;dbl&gt;, alg_aware &lt;dbl&gt;,
+#   counteract_algorithm &lt;dbl&gt;, fb &lt;dbl+lbl&gt;, ig &lt;dbl+lbl&gt;, wsp &lt;dbl+lbl&gt;,
+#   yt &lt;dbl+lbl&gt;, tw &lt;dbl+lbl&gt;, tiktok &lt;dbl+lbl&gt;, p60 &lt;dbl+lbl&gt;, p61 &lt;dbl+lbl&gt;,
+#   p62 &lt;dbl+lbl&gt;, p63 &lt;dbl+lbl&gt;, p64 &lt;dbl+lbl&gt;, age &lt;dbl&gt;,
+#   age_range &lt;dbl+lbl&gt;, gender &lt;dbl+lbl&gt;, educ_level &lt;dbl+lbl&gt;, …</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Variable</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Mean (SD)/Prop.</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Min.</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Max.</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Cronbach's Alpha</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Missings (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Perceived misinformation exposure</td>
+<td style="text-align: left;">2.04951370468612 (1.09108504593679)</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">5.75%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Perceived misinformation sharing</td>
+<td style="text-align: left;">0.224 (0.41710747738063)</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">6.25%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Algorithmic Awareness</td>
+<td style="text-align: left;">2.62159274193548 (1.57353179319822)</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">0.970934686408377</td>
+<td style="text-align: left;">17.3333333333333%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Weekly Whatsapp use</td>
+<td style="text-align: left;">1: 958 0: 242</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Weekly Instagram use</td>
+<td style="text-align: left;">1: 544 0: 656</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Weekly Facebook use</td>
+<td style="text-align: left;">1: 743 0: 457</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Weekly Youtube use</td>
+<td style="text-align: left;">1: 699 0: 501</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Weekly Twitter use</td>
+<td style="text-align: left;">1: 157 0: 1043</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Weekly Tiktok use</td>
+<td style="text-align: left;">1: 477 0: 723</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Age (continuous)</td>
+<td style="text-align: left;">51.0666666666667 (18.5979064411083)</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">96</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gender</td>
+<td style="text-align: left;">Female: 511 Male: 689</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Metropolitan region</td>
+<td style="text-align: left;">Rm: 200 Other: 1000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Educational level</td>
+<td style="text-align: left;">Primary education or less: 345 Incomplete secondary education: 164 Complete secondary education: 297 Post-secondary/technical education: 167 College education or more: 222</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.416666666666667%</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Variable</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Mean (SD)/Prop.</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Min.</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Max.</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Cronbach's Alpha</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Missings (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Perceived misinformation exposure</td>
+<td style="text-align: left;">3.54239569313594 (0.96882362336758)</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5.0</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">1.58940397350993%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Perceived misinformation sharing</td>
+<td style="text-align: left;">0.278820375335121 (0.448519187644953)</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">1.19205298013245%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Objective news knowledge</td>
+<td style="text-align: left;">4.24726775956284 (0.930733292776793)</td>
+<td style="text-align: right;">-6</td>
+<td style="text-align: right;">6.0</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Subjective news knowledge</td>
+<td style="text-align: left;">1.64370860927152 (1.63868225301959)</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5.0</td>
+<td style="text-align: left;">0.724880873392303</td>
+<td style="text-align: left;">0.618101545253863%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Overconfidence knowledge</td>
+<td style="text-align: left;">1.76777041942605 (0.96882362336758)</td>
+<td style="text-align: right;">-3</td>
+<td style="text-align: right;">3.5</td>
+<td style="text-align: left;">0.796560364058068</td>
+<td style="text-align: left;">0.618101545253863%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Algorithmic Awareness</td>
+<td style="text-align: left;">3.85079963876639 (0.96882362336758)</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5.0</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">27.2847682119205%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Algorithmic actions/counteractions</td>
+<td style="text-align: left;">-0.0121289656522912 (0.96882362336758)</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5.0</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Weekly Whatsapp use</td>
+<td style="text-align: left;">1: 978 0: 1286</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.0441501103752759%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Weekly Instagram use</td>
+<td style="text-align: left;">1: 1168 0: 1093</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.176600441501104%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Weekly Facebook use</td>
+<td style="text-align: left;">1: 1236 0: 1027</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.0883002207505519%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Weekly Youtube use</td>
+<td style="text-align: left;">1: 831 0: 1433</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.0441501103752759%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Weekly Twitter use</td>
+<td style="text-align: left;">1: 480 0: 1781</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.176600441501104%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Weekly Tiktok use</td>
+<td style="text-align: left;">1: 588 0: 1675</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0.0883002207505519%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Age (continuous)</td>
+<td style="text-align: left;">46.5735099337748(14.5222810808001)</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">93.0</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gender</td>
+<td style="text-align: left;">Female: 784 Male: 1481</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Metropolitan region</td>
+<td style="text-align: left;">Rm: 789 Other: 1476</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Educational level</td>
+<td style="text-align: left;">Primary education or less: 100 Incomplete secondary education: 104 Complete secondary education: 649 Post-secondary/technical education: 464 College education or more: 948</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5.0</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0%</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<section id="modelos" class="level1">
+<h1>Modelos</h1>
+<div class="cell">
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table 1. OLS model Perceived misinformation exposure</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">&nbsp;</td>
+<td colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">Study 1</td>
+<td colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">Study 2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Predictors</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">β</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">std. Error</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">β</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">std. Error</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">2.06 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.21</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">3.27 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.19</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Alg. Awareness</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.07 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.03</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.03</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Age</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.01 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.00</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.00 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Gender (Women = 1)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.01 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.07</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.07 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Region (MR = 1)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.17 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.08</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.04 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Educational level</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.03 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.03</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.09 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.03</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Whatsapp weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.27 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.04 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Instagram weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.05 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.09</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.04 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Facebook weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.37 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.09</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.04 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Youtube weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.01 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.08</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Twitter weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.10</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.22 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">TikTok weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.02 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.08</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.14 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">Observations</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">954</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">1627</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">R<sup>2</sup> / R<sup>2</sup> adjusted</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.226 / 0.217</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.042 / 0.036</td>
+</tr>
+<tr class="odd">
+<td colspan="5" style="text-align: right; font-style: italic; border-top: double black;">* p&lt;0.05&nbsp;&nbsp;&nbsp;** p&lt;0.01&nbsp;&nbsp;&nbsp;*** p&lt;0.001</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table 2. Logistic model Perceived misinformation sharing</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">&nbsp;</td>
+<td colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">Study 1</td>
+<td colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">Study 2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Predictors</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">β (Logit)</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">std. Error</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">β (Logit)</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">std. Error</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-2.01 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.59</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-1.96 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.47</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Alg. Awareness</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.24 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.07</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.03 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.07</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Age</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.00 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.01</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.01 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Gender (Women = 1)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.04 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.17</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.23 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Metropolitan Region</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.22 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.20</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.03 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Educational level</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.06 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.07</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.07</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Whatsapp weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.18 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.41</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.00 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Instagram weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.33 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.23</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.15 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Facebook weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.76 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.24</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.30 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Youtube weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.88 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.24</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.11 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Twitter weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.76 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.22</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.27 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">TikTok weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.42 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.20</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.30 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">Observations</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">948</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">1631</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">R<sup>2</sup> Tjur</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.147</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.021</td>
+</tr>
+<tr class="odd">
+<td colspan="5" style="text-align: right; font-style: italic; border-top: double black;">* p&lt;0.05&nbsp;&nbsp;&nbsp;** p&lt;0.01&nbsp;&nbsp;&nbsp;*** p&lt;0.001</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Table 3. OLS models Study 2</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">&nbsp;</td>
+<td colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">Perceived Misinformation Exposure</td>
+<td colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">Objective news knowledge</td>
+<td colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">Subjective news knowledge</td>
+<td colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">Knowledge overconfidence</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Predictors</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">β</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">std. Error</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">β</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">std. Error</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">β</td>
+<td style="text-align: center;">std. Error</td>
+<td style="text-align: center;">β</td>
+<td style="text-align: center;">std. Error</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">3.21 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.19</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-3.52 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.44</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">2.07 <sup>***</sup></td>
+<td style="text-align: center;">0.12</td>
+<td style="text-align: center;">-0.12 <sup></sup></td>
+<td style="text-align: center;">0.20</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Alg. Awareness</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.03</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.39 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.06</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.17 <sup>***</sup></td>
+<td style="text-align: center;">0.02</td>
+<td style="text-align: center;">0.05 <sup></sup></td>
+<td style="text-align: center;">0.03</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Alg. counteractions</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.04 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.01</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.01 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.03</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.02 <sup>*</sup></td>
+<td style="text-align: center;">0.01</td>
+<td style="text-align: center;">0.02 <sup></sup></td>
+<td style="text-align: center;">0.02</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Age</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.00 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.00</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.04 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.00</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.01 <sup>***</sup></td>
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;">0.00 <sup></sup></td>
+<td style="text-align: center;">0.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Gender (Women = 1)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.07 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.56 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.11</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.18 <sup>***</sup></td>
+<td style="text-align: center;">0.03</td>
+<td style="text-align: center;">-0.03 <sup></sup></td>
+<td style="text-align: center;">0.05</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Metropolitan Region</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.04 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.28 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.11</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.06 <sup></sup></td>
+<td style="text-align: center;">0.03</td>
+<td style="text-align: center;">-0.03 <sup></sup></td>
+<td style="text-align: center;">0.05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Educational level</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.09 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.03</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.63 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.06</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12 <sup>***</sup></td>
+<td style="text-align: center;">0.02</td>
+<td style="text-align: center;">-0.08 <sup>**</sup></td>
+<td style="text-align: center;">0.03</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Whatsapp weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.05 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.03 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.03 <sup></sup></td>
+<td style="text-align: center;">0.03</td>
+<td style="text-align: center;">0.02 <sup></sup></td>
+<td style="text-align: center;">0.05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Instagram weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.04 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.15 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.05 <sup></sup></td>
+<td style="text-align: center;">0.03</td>
+<td style="text-align: center;">-0.10 <sup></sup></td>
+<td style="text-align: center;">0.05</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Facebook weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.04 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.05 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.00 <sup></sup></td>
+<td style="text-align: center;">0.03</td>
+<td style="text-align: center;">0.04 <sup></sup></td>
+<td style="text-align: center;">0.05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Youtube weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.15 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.11</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.02 <sup></sup></td>
+<td style="text-align: center;">0.03</td>
+<td style="text-align: center;">0.04 <sup></sup></td>
+<td style="text-align: center;">0.05</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Twitter weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.21 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.45 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.17 <sup>***</sup></td>
+<td style="text-align: center;">0.03</td>
+<td style="text-align: center;">0.02 <sup></sup></td>
+<td style="text-align: center;">0.06</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">TikTok weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.15 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.51 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.05 <sup></sup></td>
+<td style="text-align: center;">0.03</td>
+<td style="text-align: center;">0.07 <sup></sup></td>
+<td style="text-align: center;">0.06</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">Observations</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">1627</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">1644</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">1644</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">1644</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">R<sup>2</sup> / R<sup>2</sup> adjusted</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.047 / 0.040</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.231 / 0.225</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.284 / 0.278</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.016 / 0.009</td>
+</tr>
+<tr class="even">
+<td colspan="9" style="text-align: right; font-style: italic; border-top: double black;">* p&lt;0.05&nbsp;&nbsp;&nbsp;** p&lt;0.01&nbsp;&nbsp;&nbsp;*** p&lt;0.001</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

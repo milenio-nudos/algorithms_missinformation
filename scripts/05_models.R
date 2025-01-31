@@ -243,7 +243,7 @@ plot_model(sharing_5b, type = "pred", terms = c("alg_aware", "educ_level"))+
 #4. Objective missinformation models -------------------------------------------
 study2_model <- study2_model|>
   mutate(info_type=to_label(info_type))|>
-  mutate(info_type=relevel(info_type,3)) #Informed as reference category
+  mutate(info_type=relevel(info_type,"Informed")) #Informed as reference category
 
 info_type_model<-multinom(info_type ~ alg_aware+age+gender+rm+educ_level,
                       data=study2_model)
@@ -253,6 +253,8 @@ tab_model(info_type_model,
           p.style = "stars",
           collapse.se = TRUE)
 
+stargazer(info_type_model,type = "text",out="test.html")
+
 strategies<- lm(exposure ~ alg_aware+counteract_algorithm+age+gender+rm+educ_level,
                 data=study2_model)
 obj_know_model<-lm(obj_know ~ alg_aware+age+gender+rm+educ_level,
@@ -260,9 +262,15 @@ obj_know_model<-lm(obj_know ~ alg_aware+age+gender+rm+educ_level,
 obj_know3_model<-lm(obj_know3 ~ alg_aware+age+gender+rm+educ_level,
                          data=study2_model)
 
+obj_know5_model<-lm(obj_know3 ~ alg_aware+counteract_algorithm+age+gender+rm+educ_level,
+                    data=study2_model)
 
-tab_model(exposure_3b,strategies,obj_know_model,obj_know3_model,
+tab_model(exposure_3b,strategies,obj_know_model,obj_know3_model,obj_know5_model,
           show.ci = FALSE,
           p.style = "stars",
-          dv.labels = c("Perceived Missinformation Exposure","+ Counteract Algorithm Strategies", "-6/6 range Objective Missinformation","0/6 range Objective Missinformation"),
+          dv.labels = c("Perceived Missinformation Exposure","+ Counteract Algorithm Strategies", "-6/6 range Objective Missinformation","0/6 range Objective Missinformation",
+                        "+ Counteract Algorithm Stategies"),
           collapse.se = TRUE)
+
+sharing7<-glm(sharing ~ alg_aware+counteract_algorithm+age+gender+rm+educ_level,
+              data=study2_model)

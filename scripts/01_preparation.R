@@ -13,7 +13,7 @@ load("data/NewsKnow.RData")
 
 # 1. Select data ---------------------------------------------------------------
 study1<-study1|>
-  select(
+  dplyr::select(
     #algorithmic_awareness
     d2_1_1,d2_2_1,d2_3_1,
     #algorithmic literacy
@@ -44,7 +44,7 @@ study1<-study1|>
 
 study2<-study2|>
   clean_names()|>
-  select(
+  dplyr::select(
     #algorithmic awareness
     p57,p58,p59,
     #algorithmic literacy
@@ -68,14 +68,21 @@ study2<-study2|>
     educ_level=p4,#Personal level of education
     ppal_educ_level=p80,#Principal level of education
     ppal_ocupation=p81,#Principal labour occupation
-    region
+    region,
+    p40,p42,p44,p46,p48,p50 #subj knowledge
   )
 
 #Add objective missinformation scales
 study2<-study2|>
   mutate(info_type=NewsKnow$info_type,
          obj_know=NewsKnow$obj_know,
-         obj_know3=NewsKnow$obj_know3)
+         obj_know3=NewsKnow$obj_know3,
+         subj_know=NewsKnow$subj_know)|>
+  mutate(subj_know_z = (subj_know - mean(subj_know, na.rm = TRUE)) / 
+           sd(subj_know, na.rm = TRUE),
+         obj_know3_z = (obj_know3 - mean(obj_know3, na.rm = TRUE)) / 
+           sd(obj_know3, na.rm = TRUE),
+         subj_know_def = subj_know_z - obj_know3_z)
 
 
 # 2. Proccess variables --------------------------------------------------------
@@ -141,7 +148,7 @@ study1 <- study1 %>%
 study1$alg_aware<-study1|>
   mutate_at(.vars=vars(starts_with("d2_")),
             .funs=list(~ifelse(.%in%c(99,88),NA,.)))|>
-  select(starts_with("d2"))|>
+  dplyr::select(starts_with("d2"))|>
   rowMeans(na.rm = TRUE)|>
   round(2)
 
@@ -233,7 +240,7 @@ study2 <- study2|>
 study2$alg_aware<-study2|>
   mutate_at(.vars=vars(p57,p58,p59),
             .funs=list(~ifelse(.%in%c(88,99),NA,.)))|>
-  select(p57,p58,p59)|>
+  dplyr::select(p57,p58,p59)|>
   rowMeans(na.rm = TRUE)|>
   round(2)  
 
@@ -246,7 +253,7 @@ study2$counteract_algorithm <- study2|>
               . %in% c(88,99) ~ NA_real_)
               )
             )|>
-  select(p60,p61,p62,p63,p64)|>
+  dplyr::select(p60,p61,p62,p63,p64)|>
   rowSums(na.rm = TRUE)|>
   as.numeric()
 
@@ -382,26 +389,24 @@ var_label(study2$tiktok) <- "Usuario semanal de Tiktok para informarse de notici
 
 #Order database ----------------------------------------------------------------
 study1<-study1|>
-  select(
+  dplyr::select(
     exposure, sharing, anti_fake_news,
     content_filt,human_int,ethic,
     alg_lit, alg_aware,
     fb, ig, wsp, yt, tw, tiktok,
-    age,age_range,gender,educ_level,ppal_educ_level,ppal_ocupation,rm,
-    starts_with("tech"),
-    digital_skills,
-    c5_4,c5_5,c5_6
+    age,age_range,gender,educ_level,ppal_educ_level,ppal_ocupation,rm
   )
 
 study2<-study2|>
-  select(
+  dplyr::select(
     exposure, sharing, vulnerability,
-    info_type,obj_know,obj_know3,
+    info_type,obj_know,obj_know3,subj_know,subj_know_def,
     content_filt,human_int,ethic,
     alg_lit, alg_aware,
     counteract_algorithm,
     fb, ig, wsp, yt, tw, tiktok,
     p60,p61,p62,p63,p64,
-    age,age_range,gender,educ_level,ppal_educ_level,ppal_ocupation,rm
+    age,age_range,gender,educ_level,ppal_educ_level,ppal_ocupation,rm,
+    p40,p42,p44,p46,p48,p50
     )
   
