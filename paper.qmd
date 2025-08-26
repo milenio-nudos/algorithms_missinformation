@@ -434,3 +434,86 @@ sjPlot::tab_model(exposure_3b,obj_know_model,subj_know_model,score_model,
           title = "Table 3. OLS models Study 2")
 ```
 
+
+# Plot Models
+
+```{r}
+library(dplyr)
+library(haven)
+
+study1_model <- study1|>
+  mutate_at(.vars = vars(gender,rm),
+            .funs = list(~to_label(.)))|>
+  mutate_at(.vars = vars(ppal_ocupation,educ_level),
+            .funs = list(~to_numeric(.)))
+
+study2_model <- study2|>
+  mutate_at(.vars = vars(gender,rm),
+            .funs = list(~to_label(.)))|>
+  mutate_at(.vars = vars(ppal_ocupation,educ_level),
+            .funs = list(~to_numeric(.)))
+
+exposure_a <- lm(exposure ~ 
+                   alg_aware + age + gender + rm + educ_level +
+                   wsp + ig + fb + yt + tw + tiktok,
+                 data = study1_model)
+
+exposure_b <- lm(exposure ~ 
+                   alg_aware + age + gender + rm + educ_level +
+                   wsp + ig + fb + yt + tw + tiktok,
+                 data = study2_model)
+
+plot_models(exposure_a, exposure_b,
+            show.values = TRUE,
+            show.p = TRUE,
+            ci.lvl = 0.95,
+            m.labels = c("Study 1", "Study 2"),
+            axis.labels = rev(c("Alg. Awareness", "Age", "Gender (female)",
+                                "Region (Metropolitana)", "Educational level",
+                                "Whatsapp weekly use", "Instagram weekly use",
+                                "Facebook weekly use", "Youtube weekly use",
+                                "Twitter weekly use", "TikTok weekly use")),
+            title = "Figure 1. Predictors of perceived misinformation exposure") +
+  theme_minimal(base_size = 14) +
+  theme(legend.position = "bottom")
+
+
+
+```
+```{r}
+# Plot para modelos logísticos (sharing)
+plot_models(sharing_a, sharing_b,
+            show.values = TRUE,
+            show.p = TRUE,
+            ci.lvl = 0.95,
+            m.labels = c("Study 1", "Study 2"),
+            axis.labels = rev(c("Alg. Awareness", "Age", "Gender (female)",
+                                "Region (Metropolitana)", "Educational level",
+                                "Whatsapp weekly use", "Instagram weekly use",
+                                "Facebook weekly use", "Youtube weekly use",
+                                "Twitter weekly use", "TikTok weekly use")),
+            title = "Figure 2. Predictors of perceived misinformation sharing") +
+  theme_minimal(base_size = 14) +
+  theme(legend.position = "bottom")
+
+```
+
+```{r}
+# Plot para los cuatro modelos de Study 2
+plot_models(exposure_3b, obj_know_model, subj_know_model, score_model,
+            show.values = TRUE,
+            show.p = TRUE,
+            ci.lvl = 0.95,
+            m.labels = c("Exposure", "Objective knowledge", 
+                         "Subjective knowledge", "Overconfidence"),
+            axis.labels = rev(c("Alg. Awareness", "Alg. counteractions",
+                                "Age", "Gender (female)",
+                                "Region (Metropolitana)", "Educational level",
+                                "Whatsapp weekly use", "Instagram weekly use",
+                                "Facebook weekly use", "Youtube weekly use",
+                                "Twitter weekly use", "TikTok weekly use")),
+            title = "Figure 3. Predictors of exposure and knowledge (Study 2)") +
+  theme_minimal(base_size = 14) +
+  theme(legend.position = "bottom")
+```
+
