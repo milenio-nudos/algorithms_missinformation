@@ -39,7 +39,8 @@ study1<-study1|>
     g9,#Principal labor occupation
     age=a2,#Age
     gender=a1,#Gender
-    region
+    region,
+    tipo_zona
   )
 
 study2<-study2|>
@@ -69,11 +70,13 @@ study2<-study2|>
     ppal_educ_level=p80,#Principal level of education
     ppal_ocupation=p81,#Principal labour occupation
     region,
-    p40,p42,p44,p46,p48,p50 #subj knowledge
+    p40,p42,p44,p46,p48,p50, #subj knowledge
+    p39,p41,p43,p45,p47,p49 #obj knowledge
   )
 
 #Add objective missinformation scales
 study2<-study2|>
+  clean_names()|>
   mutate(info_type=NewsKnow$info_type,
          obj_know=NewsKnow$obj_know,
          obj_know3=NewsKnow$obj_know3,
@@ -169,6 +172,12 @@ study1<-study1|>
   #Dichotomize users social media
   mutate_at(.vars=vars(starts_with("b12_")),
             .funs=list(~ifelse(.%in%c(3,4,5),1,0)))|>
+  #Recode algoritmich literacy for test
+  mutate(alg_lit_test=case_when(
+    alg_lit %in% c(1) ~ 0,
+    alg_lit %in% c(2,3,4,5) ~ 1,
+    TRUE ~ NA_integer_
+  ))|>
   #Recode algoritmich literacy
   mutate(alg_lit=case_when(
     alg_lit %in% c(1,2) ~ 0,
@@ -186,6 +195,9 @@ study1<-study1|>
     human_int=d2_2_1,
     ethic=d2_3_1
   )|>
+  #Non dummy sharing
+  mutate(sharing_original=sharing)|>
+  mutate(sharing_categorical = to_label(sharing))|>
   #Recode Awareness missinformation sharing as dummy
   mutate(sharing=case_when(
     sharing == 1 ~ 0,
@@ -272,6 +284,10 @@ study2 <- study2|>
     alg_lit== 1 ~ 1,
     T ~ NA_integer_
     ))|>
+  #Non dummy sharing
+  mutate(sharing_original=sharing)|>
+  #Sharing categorical
+  mutate(sharing_categorical = to_label(sharing))|>
   #Recode awareness missinformation sharing as dummy
   mutate(sharing=case_when(
     sharing == 1 ~ 0,
@@ -291,6 +307,69 @@ study2 <- study2|>
 #Revise labels
 lapply(study1,class)
 lapply(study2,class)
+
+#Recode Obj Know for robustness tests
+study2 <- study2 %>%
+  mutate(
+    # Binary: knows correctly (1) vs does not (0)
+    p39_a = case_when(
+      p39 == 1 ~ 1,
+      TRUE ~ 0
+    ),
+    p41_a = case_when(
+      p41 == 2 ~ 1,
+      TRUE ~ 0
+    ),
+    p43_a = case_when(
+      p43 == 2 ~ 1,
+      TRUE ~ 0
+    ),
+    p45_a = case_when(
+      p45 == 1 ~ 1,
+      TRUE ~ 0
+    ),
+    p47_a = case_when(
+      p47 == 1 ~ 1,
+      TRUE ~ 0
+    ),
+    p49_a = case_when(
+      p49 == 2 ~ 1,
+      TRUE ~ 0
+    ),
+    
+    # Multinomial: Correct / Incorrect / Don't know
+    p39_b = case_when(
+      p39 == 1 ~ "Correct",
+      p39 %in% c(2, 3) ~ "Incorrect",
+      TRUE ~ "Don't know"
+    ),
+    p41_b = case_when(
+      p41 == 2 ~ "Correct",
+      p41 %in% c(1, 3) ~ "Incorrect",
+      TRUE ~ "Don't know"
+    ),
+    p43_b = case_when(
+      p43 == 2 ~ "Correct",
+      p43 %in% c(1, 3) ~ "Incorrect",
+      TRUE ~ "Don't know"
+    ),
+    p45_b = case_when(
+      p45 == 1 ~ "Correct",
+      p45 %in% c(2, 3) ~ "Incorrect",
+      TRUE ~ "Don't know"
+    ),
+    p47_b = case_when(
+      p47 == 1 ~ "Correct",
+      p47 %in% c(2, 3) ~ "Incorrect",
+      TRUE ~ "Don't know"
+    ),
+    p49_b = case_when(
+      p49 == 2 ~ "Correct",
+      p49 %in% c(1, 3) ~ "Incorrect",
+      TRUE ~ "Don't know"
+    )
+  )
+
 
 #Labels manipulation -----------------------------------------------------------
 
@@ -387,19 +466,26 @@ var_label(study2$wsp) <- "Usuario semanal de Whatsapp para informarse de noticia
 var_label(study2$tw) <- "Usuario semanal de Twitter para informarse de noticias"
 var_label(study2$tiktok) <- "Usuario semanal de Tiktok para informarse de noticias"
 
+var_label(study2$p39_b) <- "Obj. Know. Partido Político Anti-embarazo"
+var_label(study2$p41_b) <- "Obj. Know. Tasa de desempleo"
+var_label(study2$p43_b) <- "Obj. Know. Plan AUGE GES"
+var_label(study2$p45_b) <- "Obj. Know. Ley inconstitucional"
+var_label(study2$p47_b) <- "Obj. Know. Interés Banco Central"
+var_label(study2$p49_b) <- "Obj. Know. Calentamiento Global"
+
 #Order database ----------------------------------------------------------------
 study1<-study1|>
   dplyr::select(
-    exposure, sharing, anti_fake_news,
+    exposure, sharing, sharing_original, sharing_categorical, anti_fake_news,
     content_filt,human_int,ethic,
-    alg_lit, alg_aware,
+    alg_lit, alg_lit_test, alg_aware,
     fb, ig, wsp, yt, tw, tiktok,
-    age,age_range,gender,educ_level,ppal_educ_level,ppal_ocupation,rm
+    age,age_range,gender,educ_level,ppal_educ_level,ppal_ocupation,rm,tipo_zona
   )
 
 study2<-study2|>
   dplyr::select(
-    exposure, sharing, vulnerability,
+    exposure, sharing, sharing_original, sharing_categorical, vulnerability,
     info_type,obj_know,obj_know3,subj_know,subj_know_def,
     content_filt,human_int,ethic,
     alg_lit, alg_aware,
@@ -407,6 +493,8 @@ study2<-study2|>
     fb, ig, wsp, yt, tw, tiktok,
     p60,p61,p62,p63,p64,
     age,age_range,gender,educ_level,ppal_educ_level,ppal_ocupation,rm,
-    p40,p42,p44,p46,p48,p50
+    p40,p42,p44,p46,p48,p50,
+    p39_a,p41_a, p43_a, p45_a, p47_a, p49_a, 
+    p39_b,p41_b, p43_b, p45_b, p47_b, p49_b 
     )
   

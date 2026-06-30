@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -29,10 +29,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="paper_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="paper_files/libs/quarto-html/anchor.min.js"></script>
 <link href="paper_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="paper_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="paper_files/libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="paper_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="paper_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="paper_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="paper_files/libs/bootstrap/bootstrap-1bc8a17f135ab3d594c857e9f48e611b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -45,67 +45,34 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,200 × 21
-   exposure        sharing anti_fake_news content_filt human_int ethic   alg_lit
-   &lt;dbl+lbl&gt;       &lt;dbl+l&gt;          &lt;dbl&gt; &lt;dbl+lbl&gt;    &lt;dbl+lbl&gt; &lt;dbl+l&gt;   &lt;dbl&gt;
- 1     3 [Al meno… 0 [Nev…           2    5 [Completa… 5 [Compl… 5 [Com…       1
- 2 NA(9) [NS-NR]   0 [Nev…           1    1 [Nada con… 1 [Nada … 1 [Nad…       0
- 3     1 [Nunca o… 0 [Nev…           1    1 [Nada con… 1 [Nada … 1 [Nad…       0
- 4     1 [Nunca o… 1 [Hav…           2.33 1 [Nada con… 1 [Nada … 1 [Nad…       1
- 5     2 [Dos o t… 0 [Nev…           2    1 [Nada con… 1 [Nada … 1 [Nad…       0
- 6     4 [Todos l… 0 [Nev…           3.33 5 [Completa… 5 [Compl… 5 [Com…       1
- 7     1 [Nunca o… 0 [Nev…           1    5 [Completa… 5 [Compl… 5 [Com…       1
- 8     4 [Todos l… 0 [Nev…           1    5 [Completa… 5 [Compl… 5 [Com…       1
- 9     3 [Al meno… 0 [Nev…           1.33 3 [3]        5 [Compl… 4 [4]         0
-10     1 [Nunca o… 0 [Nev…           1    4 [4]        3 [3]     4 [4]        NA
-# ℹ 1,190 more rows
-# ℹ 14 more variables: alg_aware &lt;dbl&gt;, fb &lt;dbl+lbl&gt;, ig &lt;dbl+lbl&gt;,
-#   wsp &lt;dbl+lbl&gt;, yt &lt;dbl+lbl&gt;, tw &lt;dbl+lbl&gt;, tiktok &lt;dbl+lbl&gt;, age &lt;dbl&gt;,
-#   age_range &lt;dbl+lbl&gt;, gender &lt;dbl+lbl&gt;, educ_level &lt;dbl+lbl&gt;,
-#   ppal_educ_level &lt;dbl+lbl&gt;, ppal_ocupation &lt;dbl+lbl&gt;, rm &lt;dbl+lbl&gt;</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2,265 × 38
-   exposure         sharing vulnerability info_type obj_know obj_know3 subj_know
-   &lt;dbl+lbl&gt;        &lt;dbl+l&gt; &lt;dbl+lbl&gt;     &lt;dbl+lbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
- 1 4 [Casi siempre] 1 [Hav… 4 [De acuerd… 3 [Infor…        2         2      4   
- 2 4 [Casi siempre] 1 [Hav… 4 [De acuerd… 1 [Uninf…        0         3      3.33
- 3 4 [Casi siempre] 0 [Nev… 4 [De acuerd… 1 [Uninf…        0         1      5   
- 4 3 [A veces]      0 [Nev… 4 [De acuerd… 3 [Infor…        6         6      3.83
- 5 3 [A veces]      0 [Nev… 4 [De acuerd… 3 [Infor…        2         3      3.25
- 6 3 [A veces]      0 [Nev… 4 [De acuerd… 2 [Misin…       -1         2      3.60
- 7 5 [Siempre]      1 [Hav… 3 [Ni de acu… 3 [Infor…        1         2      3.33
- 8 2 [Casi nunca]   0 [Nev… 4 [De acuerd… 3 [Infor…        1         1      4   
- 9 4 [Casi siempre] 1 [Hav… 5 [Muy de ac… 3 [Infor…        3         4      5   
-10 4 [Casi siempre] 1 [Hav… 4 [De acuerd… 1 [Uninf…        0         2      3   
-# ℹ 2,255 more rows
-# ℹ 31 more variables: subj_know_def &lt;dbl&gt;, content_filt &lt;dbl+lbl&gt;,
-#   human_int &lt;dbl+lbl&gt;, ethic &lt;dbl+lbl&gt;, alg_lit &lt;dbl&gt;, alg_aware &lt;dbl&gt;,
-#   counteract_algorithm &lt;dbl&gt;, fb &lt;dbl+lbl&gt;, ig &lt;dbl+lbl&gt;, wsp &lt;dbl+lbl&gt;,
-#   yt &lt;dbl+lbl&gt;, tw &lt;dbl+lbl&gt;, tiktok &lt;dbl+lbl&gt;, p60 &lt;dbl+lbl&gt;, p61 &lt;dbl+lbl&gt;,
-#   p62 &lt;dbl+lbl&gt;, p63 &lt;dbl+lbl&gt;, p64 &lt;dbl+lbl&gt;, age &lt;dbl&gt;,
-#   age_range &lt;dbl+lbl&gt;, gender &lt;dbl+lbl&gt;, educ_level &lt;dbl+lbl&gt;, …</code></pre>
-</div>
-</div>
+
+<section id="table-a1.-descriptive-statistics-of-study-1-variables." class="level1">
+<h1>Table A1. Descriptive Statistics of Study 1 Variables.</h1>
 <div class="cell">
 <div class="cell-output-display">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 69%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 6%">
+<col style="width: 5%">
+</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Variable</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Mean (SD)/Prop.</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Min.</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Max.</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Cronbach's Alpha</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Missings (%)</th>
+<th style="text-align: left;">Variable</th>
+<th style="text-align: left;">Mean (SD)/Prop.</th>
+<th style="text-align: right;">Min.</th>
+<th style="text-align: right;">Max.</th>
+<th style="text-align: left;">Cronbach’s Alpha</th>
+<th style="text-align: left;">Missings (%)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Perceived misinformation exposure</td>
-<td style="text-align: left;">2.04951370468612 (1.09108504593679)</td>
+<td style="text-align: left;">2.05 (1.09)</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">5</td>
 <td style="text-align: left;"></td>
@@ -113,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="even">
 <td style="text-align: left;">Perceived misinformation sharing</td>
-<td style="text-align: left;">0.224 (0.41710747738063)</td>
+<td style="text-align: left;">0.22 (0.42)</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: left;"></td>
@@ -121,11 +88,11 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Algorithmic Awareness</td>
-<td style="text-align: left;">2.62159274193548 (1.57353179319822)</td>
+<td style="text-align: left;">2.62 (1.57)</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">5</td>
-<td style="text-align: left;">0.970934686408377</td>
-<td style="text-align: left;">17.3333333333333%</td>
+<td style="text-align: left;">0.97</td>
+<td style="text-align: left;">17.33%</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Weekly Whatsapp use</td>
@@ -177,7 +144,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="even">
 <td style="text-align: left;">Age (continuous)</td>
-<td style="text-align: left;">51.0666666666667 (18.5979064411083)</td>
+<td style="text-align: left;">51.07 (18.6)</td>
 <td style="text-align: right;">14</td>
 <td style="text-align: right;">96</td>
 <td style="text-align: left;"></td>
@@ -205,47 +172,56 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">5</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">0.416666666666667%</td>
+<td style="text-align: left;">0.42%</td>
 </tr>
 </tbody>
 </table>
-
-
 </div>
 </div>
+</section>
+<section id="table-a3.-summary-study-2-variables." class="level1">
+<h1>Table A3. Summary Study 2 Variables.</h1>
 <div class="cell">
 <div class="cell-output-display">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 69%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 6%">
+<col style="width: 5%">
+</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Variable</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Mean (SD)/Prop.</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Min.</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Max.</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Cronbach's Alpha</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Missings (%)</th>
+<th style="text-align: left;">Variable</th>
+<th style="text-align: left;">Mean (SD)/Prop.</th>
+<th style="text-align: right;">Min.</th>
+<th style="text-align: right;">Max.</th>
+<th style="text-align: left;">Cronbach’s Alpha</th>
+<th style="text-align: left;">Missings (%)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Perceived misinformation exposure</td>
-<td style="text-align: left;">3.54239569313594 (0.96882362336758)</td>
+<td style="text-align: left;">3.54 (0.97)</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">5.0</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">1.58940397350993%</td>
+<td style="text-align: left;">1.59%</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Perceived misinformation sharing</td>
-<td style="text-align: left;">0.278820375335121 (0.448519187644953)</td>
+<td style="text-align: left;">0.28 (0.45)</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">1.0</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">1.19205298013245%</td>
+<td style="text-align: left;">1.19%</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Objective news knowledge</td>
-<td style="text-align: left;">4.24726775956284 (0.930733292776793)</td>
+<td style="text-align: left;">4.25 (0.93)</td>
 <td style="text-align: right;">-6</td>
 <td style="text-align: right;">6.0</td>
 <td style="text-align: left;"></td>
@@ -253,31 +229,31 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="even">
 <td style="text-align: left;">Subjective news knowledge</td>
-<td style="text-align: left;">1.64370860927152 (1.63868225301959)</td>
+<td style="text-align: left;">1.64 (1.64)</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">5.0</td>
-<td style="text-align: left;">0.724880873392303</td>
-<td style="text-align: left;">0.618101545253863%</td>
+<td style="text-align: left;">0.72</td>
+<td style="text-align: left;">0.62%</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Overconfidence knowledge</td>
-<td style="text-align: left;">1.76777041942605 (0.96882362336758)</td>
+<td style="text-align: left;">1.77 (0.97)</td>
 <td style="text-align: right;">-3</td>
 <td style="text-align: right;">3.5</td>
-<td style="text-align: left;">0.796560364058068</td>
-<td style="text-align: left;">0.618101545253863%</td>
+<td style="text-align: left;">0.8</td>
+<td style="text-align: left;">0.62%</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Algorithmic Awareness</td>
-<td style="text-align: left;">3.85079963876639 (0.96882362336758)</td>
+<td style="text-align: left;">3.85 (0.97)</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">5.0</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">27.2847682119205%</td>
+<td style="text-align: left;">27.28%</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Algorithmic actions/counteractions</td>
-<td style="text-align: left;">-0.0121289656522912 (0.96882362336758)</td>
+<td style="text-align: left;">-0.01 (0.97)</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">5.0</td>
 <td style="text-align: left;"></td>
@@ -289,7 +265,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">1.0</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">0.0441501103752759%</td>
+<td style="text-align: left;">0.04%</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Weekly Instagram use</td>
@@ -297,7 +273,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">1.0</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">0.176600441501104%</td>
+<td style="text-align: left;">0.18%</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Weekly Facebook use</td>
@@ -305,7 +281,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">1.0</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">0.0883002207505519%</td>
+<td style="text-align: left;">0.09%</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Weekly Youtube use</td>
@@ -313,7 +289,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">1.0</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">0.0441501103752759%</td>
+<td style="text-align: left;">0.04%</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Weekly Twitter use</td>
@@ -321,7 +297,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">1.0</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">0.176600441501104%</td>
+<td style="text-align: left;">0.18%</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Weekly Tiktok use</td>
@@ -329,11 +305,11 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">1.0</td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;">0.0883002207505519%</td>
+<td style="text-align: left;">0.09%</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Age (continuous)</td>
-<td style="text-align: left;">46.5735099337748(14.5222810808001)</td>
+<td style="text-align: left;">46.57 (14.52)</td>
 <td style="text-align: right;">18</td>
 <td style="text-align: right;">93.0</td>
 <td style="text-align: left;"></td>
@@ -365,15 +341,63 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
-
-
 </div>
 </div>
+</section>
+<section id="table-a2.-rural-and-urban-algorithmic-literacy-differences-in-study-1." class="level1">
+<h1>Table A2. Rural and Urban Algorithmic Literacy differences in Study 1.</h1>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 2%">
+<col style="width: 1%">
+<col style="width: 7%">
+<col style="width: 9%">
+<col style="width: 4%">
+<col style="width: 10%">
+<col style="width: 64%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Area</th>
+<th style="text-align: right;">N</th>
+<th style="text-align: left;">Know Algorithmic Term</th>
+<th style="text-align: left;">Algorithmic Awareness mean</th>
+<th style="text-align: left;">Age Mean (sd)</th>
+<th style="text-align: left;">Gender</th>
+<th style="text-align: left;">Education</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Rural</td>
+<td style="text-align: right;">449</td>
+<td style="text-align: left;">109 (27.6)</td>
+<td style="text-align: left;">2.2 (p &gt; 0.01)</td>
+<td style="text-align: left;">52 (19)</td>
+<td style="text-align: left;">M: 184 (41%) / W: 265 (59%)</td>
+<td style="text-align: left;">Basic education: 216 (48.2%); Middle school (complete): 97 (21.7%); Middle school (incomplete): 61 (13.6%); Technical higher education: 28 (6.2%); University / Postgraduate: 46 (10.3%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Urban</td>
+<td style="text-align: right;">751</td>
+<td style="text-align: left;">369 (53.9)</td>
+<td style="text-align: left;">2.8</td>
+<td style="text-align: left;">50 (19)</td>
+<td style="text-align: left;">M: 327 (43.5%) / W: 424 (56.5%)</td>
+<td style="text-align: left;">Basic education: 129 (17.3%); Middle school (complete): 200 (26.8%); Middle school (incomplete): 103 (13.8%); Technical higher education: 139 (18.6%); University / Postgraduate: 176 (23.6%)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
 <section id="modelos" class="level1">
 <h1>Modelos</h1>
 <div class="cell">
 <div class="cell-output-display">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>Table 1. OLS model Perceived misinformation exposure</caption>
 <tbody>
 <tr class="odd">
@@ -493,7 +517,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>Table 2. Logistic model Perceived misinformation sharing</caption>
 <tbody>
 <tr class="odd">
@@ -611,9 +635,12 @@ ul.task-list li input[type="checkbox"] {
 
 </div>
 </div>
+</section>
+<section id="table-2.-ols-models-for-study-2" class="level1">
+<h1>Table 2. OLS Models for Study 2</h1>
 <div class="cell">
 <div class="cell-output-display">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>Table 3. OLS models Study 2</caption>
 <tbody>
 <tr class="odd">
@@ -801,6 +828,2262 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
+<section id="plot-models" class="level1">
+<h1>Plot Models</h1>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="paper_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="paper_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="paper_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="appendix" class="level1">
+<h1>Appendix</h1>
+</section>
+<section id="table-a4.-comparative-models-study-1-filter-alg.-lit." class="level1">
+<h1>Table A4. Comparative models study 1 (Filter Alg. Lit.)</h1>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Table X. Comparative models study 1 (Filter Alg. Lit.)</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">&nbsp;</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">Exposure: Original</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">Exposure: Alg == 1</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">Sharing: Original</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">Sharing: Alg == 1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Predictors</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">β (OLS/Logit)</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">β (OLS/Logit)</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">β (OLS/Logit)</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">β (OLS/Logit)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">2.06 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">2.20 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-2.01 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-1.09 <sup></sup></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Alg. Awareness</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.07 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.04 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.24 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.33 <sup>***</sup></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Age</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.01 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.01 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.00 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.01 <sup></sup></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Gender (Women = 1)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.01 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.05 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.04 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.08 <sup></sup></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Region (MR = 1)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.17 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.27 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.22 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.38 <sup>***</sup></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Educational level</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.03 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.03 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.06 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.11 <sup></sup></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Whatsapp weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.27 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.39 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.18 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.83 <sup></sup></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Instagram weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.05 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.10 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.33 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.26 <sup></sup></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Facebook weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.37 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.42 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.76 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.72 <sup>*</sup></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Youtube weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.01 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.10 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.88 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.83 <sup>**</sup></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Twitter weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.17 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.76 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.08 <sup>***</sup></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">TikTok weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.02 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.25 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.42 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.17 <sup></sup></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">Observations</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">954</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">553</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">948</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">546</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">R<sup>2</sup> / R<sup>2</sup> adjusted</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.226 / 0.217</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.084 / 0.066</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.147</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.164</td>
+</tr>
+<tr class="odd">
+<td colspan="5" style="text-align: right; font-style: italic; border-top: double black;">* p&lt;0.05&nbsp;&nbsp;&nbsp;** p&lt;0.01&nbsp;&nbsp;&nbsp;*** p&lt;0.001</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<section id="sharing-with-original-scale" class="level2">
+<h2 class="anchored" data-anchor-id="sharing-with-original-scale">Sharing with original scale</h2>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Table X. Comparative models Sharing recodification Study 1</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">&nbsp;</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">Sharing Dicothomical Study 1</td>
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">Sharing Study 1 Continue Scale</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Predictors</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Log-Odds</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Estimates</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-2.01 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.29 <sup>***</sup></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Alg. Awareness</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.24 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.07 <sup>***</sup></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Age</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.00 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.00 <sup></sup></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Gender (Women = 1)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.04 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.00 <sup></sup></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Region (MR = 1)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.22 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.44 <sup>***</sup></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Educational level</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.06 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.03 <sup></sup></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Whatsapp weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.18 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.10 <sup></sup></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Instagram weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.33 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.04 <sup></sup></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Facebook weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.76 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.23 <sup>***</sup></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Youtube weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.88 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.17 <sup>**</sup></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Twitter weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.76 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.32 <sup>***</sup></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">TikTok weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.42 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.14 <sup>*</sup></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">Observations</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">948</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">948</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">R<sup>2</sup> Tjur</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.147</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.141 / 0.131</td>
+</tr>
+<tr class="odd">
+<td colspan="3" style="text-align: right; font-style: italic; border-top: double black;">* p&lt;0.05&nbsp;&nbsp;&nbsp;** p&lt;0.01&nbsp;&nbsp;&nbsp;*** p&lt;0.001</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+</section>
+<section id="table-3.-multinomial-model-for-sharing-misinformation-in-study-2" class="level1">
+<h1>Table 3. Multinomial model for Sharing Misinformation in Study 2</h1>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Table X. Sharing study 2</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">&nbsp;</td>
+<td colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">Sharing Study 2 Categorical (Multinomial)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Predictors</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Odds Ratios</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">std. Error</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Response</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.06</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">alg_aware</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.00 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.07</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">counteract_algorithm</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.04 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.04</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">age</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.01 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.00</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">genderWomen</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.86 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.11</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">rmRegión Metropolitana</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.04 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">educ_level</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.07 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.07</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">wsp</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.94 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">ig</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.13 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.15</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">fb</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.40 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.18</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">yt</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.11 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.14</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tw</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.34 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.17</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tiktok</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.29 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.17</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.00 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.00</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">alg_aware</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.62 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.48</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">counteract_algorithm</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.05 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">age</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.01 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.02</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">genderWomen</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.28 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">rmRegión Metropolitana</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.98 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.40</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">educ_level</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.88 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.20</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">wsp</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">2.25 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.97</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">ig</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">2.11 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.98</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">fb</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.84 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.36</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">yt</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.33 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.53</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tw</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.67 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.31</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tiktok</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">2.86 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.16</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">Observations</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">1631</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">R<sup>2</sup> / R<sup>2</sup> adjusted</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.295 / 0.295</td>
+</tr>
+<tr class="odd">
+<td colspan="4" style="text-align: right; font-style: italic; border-top: double black;">* p&lt;0.05&nbsp;&nbsp;&nbsp;** p&lt;0.01&nbsp;&nbsp;&nbsp;*** p&lt;0.001</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+<section id="objective-knowledge-recodification" class="level1">
+<h1>Objective Knowledge recodification</h1>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Table X.a. Logistic models predicting correct objective knowledge (Study 2)</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">&nbsp;</td>
+<td colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">P39 Correct vs Not</td>
+<td colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">P41 Correct vs Not</td>
+<td colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">P43 Correct vs Not</td>
+<td colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">P45 Correct vs Not</td>
+<td colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">P47 Correct vs Not</td>
+<td colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">P49 Correct vs Not</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Predictors</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Odds Ratios</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">std. Error</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Odds Ratios</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">std. Error</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Odds Ratios</td>
+<td style="text-align: center;">std. Error</td>
+<td style="text-align: center;">Odds Ratios</td>
+<td style="text-align: center;">std. Error</td>
+<td style="text-align: center;">Odds Ratios</td>
+<td style="text-align: center;">std. Error</td>
+<td style="text-align: center;">Odds Ratios</td>
+<td style="text-align: center;">std. Error</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.10 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.02 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.01</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.00 <sup>***</sup></td>
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;">0.05 <sup>***</sup></td>
+<td style="text-align: center;">0.02</td>
+<td style="text-align: center;">0.16 <sup>***</sup></td>
+<td style="text-align: center;">0.07</td>
+<td style="text-align: center;">0.74 <sup></sup></td>
+<td style="text-align: center;">0.31</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Alg. Awareness</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.37 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.09</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.30 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.08</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.34 <sup>***</sup></td>
+<td style="text-align: center;">0.09</td>
+<td style="text-align: center;">1.36 <sup>***</sup></td>
+<td style="text-align: center;">0.09</td>
+<td style="text-align: center;">1.20 <sup>**</sup></td>
+<td style="text-align: center;">0.07</td>
+<td style="text-align: center;">1.04 <sup></sup></td>
+<td style="text-align: center;">0.06</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Age</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.02 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.00</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.03 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.00</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.04 <sup>***</sup></td>
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;">1.04 <sup>***</sup></td>
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;">1.01 <sup>**</sup></td>
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;">1.00 <sup></sup></td>
+<td style="text-align: center;">0.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Gender (Women = 1)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.74 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.10</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.59 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.07</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.43 <sup>**</sup></td>
+<td style="text-align: center;">0.17</td>
+<td style="text-align: center;">0.41 <sup>***</sup></td>
+<td style="text-align: center;">0.05</td>
+<td style="text-align: center;">0.59 <sup>***</sup></td>
+<td style="text-align: center;">0.07</td>
+<td style="text-align: center;">1.11 <sup></sup></td>
+<td style="text-align: center;">0.12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Region (MR = 1)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.21 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.15</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.16 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.26 <sup>*</sup></td>
+<td style="text-align: center;">0.15</td>
+<td style="text-align: center;">1.01 <sup></sup></td>
+<td style="text-align: center;">0.12</td>
+<td style="text-align: center;">1.06 <sup></sup></td>
+<td style="text-align: center;">0.12</td>
+<td style="text-align: center;">1.19 <sup></sup></td>
+<td style="text-align: center;">0.13</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Educational level</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.29 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.08</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.49 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.09</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.93 <sup>***</sup></td>
+<td style="text-align: center;">0.13</td>
+<td style="text-align: center;">1.36 <sup>***</sup></td>
+<td style="text-align: center;">0.09</td>
+<td style="text-align: center;">1.32 <sup>***</sup></td>
+<td style="text-align: center;">0.08</td>
+<td style="text-align: center;">1.06 <sup></sup></td>
+<td style="text-align: center;">0.06</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Whatsapp weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.01 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.98 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.03 <sup></sup></td>
+<td style="text-align: center;">0.13</td>
+<td style="text-align: center;">0.79 <sup></sup></td>
+<td style="text-align: center;">0.10</td>
+<td style="text-align: center;">1.32 <sup>*</sup></td>
+<td style="text-align: center;">0.16</td>
+<td style="text-align: center;">1.01 <sup></sup></td>
+<td style="text-align: center;">0.11</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Instagram weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.24 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.16</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.92 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.11</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.04 <sup></sup></td>
+<td style="text-align: center;">0.13</td>
+<td style="text-align: center;">0.94 <sup></sup></td>
+<td style="text-align: center;">0.12</td>
+<td style="text-align: center;">0.97 <sup></sup></td>
+<td style="text-align: center;">0.12</td>
+<td style="text-align: center;">1.26 <sup>*</sup></td>
+<td style="text-align: center;">0.14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Facebook weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.88 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.11</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.87 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.10</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.86 <sup></sup></td>
+<td style="text-align: center;">0.10</td>
+<td style="text-align: center;">1.06 <sup></sup></td>
+<td style="text-align: center;">0.13</td>
+<td style="text-align: center;">0.94 <sup></sup></td>
+<td style="text-align: center;">0.11</td>
+<td style="text-align: center;">1.13 <sup></sup></td>
+<td style="text-align: center;">0.13</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Youtube weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.83 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.11</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.16 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.14</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.02 <sup></sup></td>
+<td style="text-align: center;">0.12</td>
+<td style="text-align: center;">0.96 <sup></sup></td>
+<td style="text-align: center;">0.12</td>
+<td style="text-align: center;">1.15 <sup></sup></td>
+<td style="text-align: center;">0.13</td>
+<td style="text-align: center;">0.82 <sup></sup></td>
+<td style="text-align: center;">0.09</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Twitter weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.69 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.25</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.34 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.17</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.72 <sup>***</sup></td>
+<td style="text-align: center;">0.23</td>
+<td style="text-align: center;">1.64 <sup>***</sup></td>
+<td style="text-align: center;">0.22</td>
+<td style="text-align: center;">1.07 <sup></sup></td>
+<td style="text-align: center;">0.13</td>
+<td style="text-align: center;">0.89 <sup></sup></td>
+<td style="text-align: center;">0.11</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">TikTok weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.98 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.14</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.80 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.11</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.72 <sup>*</sup></td>
+<td style="text-align: center;">0.10</td>
+<td style="text-align: center;">0.87 <sup></sup></td>
+<td style="text-align: center;">0.12</td>
+<td style="text-align: center;">0.84 <sup></sup></td>
+<td style="text-align: center;">0.11</td>
+<td style="text-align: center;">0.89 <sup></sup></td>
+<td style="text-align: center;">0.11</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">Observations</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">1644</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">1644</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">1644</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">1644</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">1644</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">1644</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">R<sup>2</sup> Tjur</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.080</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.144</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.174</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.157</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.071</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.010</td>
+</tr>
+<tr class="odd">
+<td colspan="13" style="text-align: right; font-style: italic; border-top: double black;">* p&lt;0.05&nbsp;&nbsp;&nbsp;** p&lt;0.01&nbsp;&nbsp;&nbsp;*** p&lt;0.001</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Table A1. Multinomial model for P39 (Correct / Incorrect / Don't know)</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">&nbsp;</td>
+<td colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">P39 Objective knowledge</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Predictors</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Odds Ratios</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">std. Error</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Response</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">6.38 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">3.41</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">alg_aware</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.70 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">age</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.98 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.01</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">gender</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.28 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.19</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">rm</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.80 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.11</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">educ_level</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.80 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.06</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">wsp</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.89 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">ig</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.77 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.11</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">fb</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.17 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.17</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">yt</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.28 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.18</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tw</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.52 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.09</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tiktok</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.02 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.16</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">3.00 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">2.30</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">alg_aware</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.83 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.09</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">age</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.97 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.01</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">gender</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.53 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.33</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">rm</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.89 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.18</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">educ_level</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.73 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.08</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">wsp</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.25 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.25</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">ig</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.88 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.18</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">fb</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.10 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.23</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">yt</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.04 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.21</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tw</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.77 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.17</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tiktok</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.02 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.22</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">Observations</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">1644</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">R<sup>2</sup> / R<sup>2</sup> adjusted</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.403 / 0.402</td>
+</tr>
+<tr class="odd">
+<td colspan="4" style="text-align: right; font-style: italic; border-top: double black;">* p&lt;0.05&nbsp;&nbsp;&nbsp;** p&lt;0.01&nbsp;&nbsp;&nbsp;*** p&lt;0.001</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Table A2. Multinomial model for P41 (Correct / Incorrect / Don't know)</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">&nbsp;</td>
+<td colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">P41 Objective knowledge</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Predictors</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Odds Ratios</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">std. Error</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Response</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">38.20 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">23.71</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">alg_aware</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.79 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.07</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">age</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.95 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.01</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">gender</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.87 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.30</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">rm</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.97 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.15</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">educ_level</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.62 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">wsp</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.95 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.15</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">ig</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.28 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.21</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">fb</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.26 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.20</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">yt</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.77 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tw</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.79 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.14</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tiktok</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.85 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.15</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">14.93 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">7.66</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">alg_aware</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.76 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">age</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.98 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.00</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">gender</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.60 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.21</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">rm</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.81 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.10</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">educ_level</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.70 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">wsp</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.06 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.14</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">ig</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.99 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">fb</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.11 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.15</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">yt</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.91 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tw</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.73 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.11</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tiktok</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.53 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.22</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">Observations</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">1644</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">R<sup>2</sup> / R<sup>2</sup> adjusted</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.370 / 0.370</td>
+</tr>
+<tr class="odd">
+<td colspan="4" style="text-align: right; font-style: italic; border-top: double black;">* p&lt;0.05&nbsp;&nbsp;&nbsp;** p&lt;0.01&nbsp;&nbsp;&nbsp;*** p&lt;0.001</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Table A3. Multinomial model for P43 (Correct / Incorrect / Don't know)</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">&nbsp;</td>
+<td colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">P43 Objective knowledge</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Predictors</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Odds Ratios</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">std. Error</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Response</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">460.40 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">316.63</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">alg_aware</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.68 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.06</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">age</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.95 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.01</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">gender</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.42 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.07</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">rm</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.77 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">educ_level</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.51 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">wsp</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.11 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.19</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">ig</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.94 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.17</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">fb</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.06 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.18</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">yt</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.80 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.14</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tw</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.49 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.10</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tiktok</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.22 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.23</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">92.99 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">50.14</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">alg_aware</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.78 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.06</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">age</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.97 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.00</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">gender</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.89 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">rm</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.80 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.10</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">educ_level</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.52 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.04</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">wsp</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.91 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">ig</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.97 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">fb</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.22 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.17</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">yt</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.07 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.14</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tw</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.62 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.09</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tiktok</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.47 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.21</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">Observations</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">1644</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">R<sup>2</sup> / R<sup>2</sup> adjusted</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.393 / 0.393</td>
+</tr>
+<tr class="odd">
+<td colspan="4" style="text-align: right; font-style: italic; border-top: double black;">* p&lt;0.05&nbsp;&nbsp;&nbsp;** p&lt;0.01&nbsp;&nbsp;&nbsp;*** p&lt;0.001</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Table A4. Multinomial model for P45 (Correct / Incorrect / Don't know)</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">&nbsp;</td>
+<td colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">P45 Objective knowledge</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Predictors</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Odds Ratios</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">std. Error</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Response</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">27.55 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">16.63</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">alg_aware</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.70 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.06</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">age</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.96 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.01</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">gender</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">2.52 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.43</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">rm</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.95 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.15</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">educ_level</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.66 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">wsp</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.04 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.17</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">ig</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.00 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.16</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">fb</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.24 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.20</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">yt</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.82 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tw</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.61 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.11</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tiktok</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.95 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.17</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">4.21 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">2.38</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">alg_aware</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.78 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.06</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">age</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.97 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.01</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">gender</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">2.36 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.36</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">rm</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.03 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.15</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">educ_level</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.80 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.06</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">wsp</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.49 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.22</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">ig</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.11 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.17</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">fb</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.76 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">yt</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.25 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.18</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tw</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.61 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.10</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tiktok</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.33 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.21</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">Observations</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">1644</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">R<sup>2</sup> / R<sup>2</sup> adjusted</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.410 / 0.410</td>
+</tr>
+<tr class="odd">
+<td colspan="4" style="text-align: right; font-style: italic; border-top: double black;">* p&lt;0.05&nbsp;&nbsp;&nbsp;** p&lt;0.01&nbsp;&nbsp;&nbsp;*** p&lt;0.001</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Table A5. Multinomial model for P47 (Correct / Incorrect / Don't know)</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">&nbsp;</td>
+<td colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">P47 Objective knowledge</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Predictors</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Odds Ratios</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">std. Error</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Response</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">6.43 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">3.28</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">alg_aware</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.76 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">age</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.98 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.01</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">gender</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.95 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.27</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">rm</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.94 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">educ_level</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.76 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">wsp</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.79 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.11</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">ig</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.12 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.16</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">fb</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.03 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.14</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">yt</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.70 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.10</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tw</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.83 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tiktok</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.99 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.15</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.95 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.58</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">alg_aware</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.97 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.08</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">age</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.99 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.01</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">gender</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.40 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.22</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">rm</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.96 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.15</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">educ_level</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.75 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.06</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">wsp</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.71 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">ig</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.91 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.15</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">fb</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.13 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.19</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">yt</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.19 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.19</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tw</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.11 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.19</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tiktok</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.54 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.26</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">Observations</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">1644</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">R<sup>2</sup> / R<sup>2</sup> adjusted</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.349 / 0.348</td>
+</tr>
+<tr class="odd">
+<td colspan="4" style="text-align: right; font-style: italic; border-top: double black;">* p&lt;0.05&nbsp;&nbsp;&nbsp;** p&lt;0.01&nbsp;&nbsp;&nbsp;*** p&lt;0.001</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Table A6. Multinomial model for P49 (Correct / Incorrect / Don't know)</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">&nbsp;</td>
+<td colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">P49 Objective knowledge</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Predictors</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Odds Ratios</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">std. Error</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Response</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">4.80 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">10.46</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">alg_aware</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.72 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.21</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">age</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.95 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.02</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">gender</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.33 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.19</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">rm</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.72 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.44</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">educ_level</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.59 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.17</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">wsp</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.36 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.22</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">ig</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.58 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.34</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">fb</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.17 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.73</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">yt</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">6.88 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">4.37</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tw</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.18 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.19</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tiktok</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.85 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.05</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Don't know</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.19 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.51</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">alg_aware</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.97 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.06</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">age</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.00 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.00</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">gender</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.92 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.10</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">rm</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.84 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.09</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">educ_level</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.96 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.06</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">wsp</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.01 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.11</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">ig</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.80 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.09</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">fb</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.88 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.10</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">yt</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.17 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tw</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.14 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.14</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tiktok</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.11 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.14</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Incorrect</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">Observations</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">1644</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">R<sup>2</sup> / R<sup>2</sup> adjusted</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.334 / 0.333</td>
+</tr>
+<tr class="odd">
+<td colspan="4" style="text-align: right; font-style: italic; border-top: double black;">* p&lt;0.05&nbsp;&nbsp;&nbsp;** p&lt;0.01&nbsp;&nbsp;&nbsp;*** p&lt;0.001</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+<section id="table-study-1" class="level1">
+<h1>Table study 1</h1>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Table 1. Predicting Missinformation Exposure and Sharing in Study 1</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">&nbsp;</td>
+<td colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">Exposure</td>
+<td colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">Sharing</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Predictors</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">β</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">std. Error</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">β</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">std. Error</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">2.06 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.21</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.29 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.15</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Alg. Awareness</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.07 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.03</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.07 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.02</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Age</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.01 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.00</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.00 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Gender (Women = 1)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.01 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.07</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.00 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Region (MR = 1)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.17 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.08</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.44 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.06</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Educational level</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.03 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.03</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.03 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.02</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Whatsapp weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.27 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.10 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.09</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Instagram weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.05 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.09</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.04 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.06</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Facebook weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.37 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.09</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.23 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.06</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Youtube weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.01 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.08</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.17 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.06</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Twitter weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.10</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.32 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.07</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">TikTok weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.02 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.08</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.14 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.06</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">Observations</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">954</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">948</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">R<sup>2</sup> / R<sup>2</sup> adjusted</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.226 / 0.217</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.141 / 0.131</td>
+</tr>
+<tr class="odd">
+<td colspan="5" style="text-align: right; font-style: italic; border-top: double black;">* p&lt;0.05&nbsp;&nbsp;&nbsp;** p&lt;0.01&nbsp;&nbsp;&nbsp;*** p&lt;0.001</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+<section id="table-study-2" class="level1">
+<h1>Table Study 2</h1>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Table 3. OLS models Study 2</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">&nbsp;</td>
+<td colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">Perceived Misinformation Exposure</td>
+<td colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">Objective news knowledge</td>
+<td colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">Subjective news knowledge</td>
+<td colspan="2" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">Knowledge overconfidence</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Predictors</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">β</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">std. Error</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">β</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">std. Error</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">β</td>
+<td style="text-align: center;">std. Error</td>
+<td style="text-align: center;">β</td>
+<td style="text-align: center;">std. Error</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">3.21 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.19</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-3.52 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.44</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">2.07 <sup>***</sup></td>
+<td style="text-align: center;">0.12</td>
+<td style="text-align: center;">-0.12 <sup></sup></td>
+<td style="text-align: center;">0.20</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Alg. Awareness</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.03</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.39 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.06</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.17 <sup>***</sup></td>
+<td style="text-align: center;">0.02</td>
+<td style="text-align: center;">0.05 <sup></sup></td>
+<td style="text-align: center;">0.03</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Alg. counteractions</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.04 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.01</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.01 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.03</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.02 <sup>*</sup></td>
+<td style="text-align: center;">0.01</td>
+<td style="text-align: center;">0.02 <sup></sup></td>
+<td style="text-align: center;">0.02</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Age</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.00 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.00</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.04 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.00</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.01 <sup>***</sup></td>
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;">0.00 <sup></sup></td>
+<td style="text-align: center;">0.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Gender (Women = 1)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.07 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.56 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.11</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.18 <sup>***</sup></td>
+<td style="text-align: center;">0.03</td>
+<td style="text-align: center;">-0.03 <sup></sup></td>
+<td style="text-align: center;">0.05</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Metropolitan Region</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.04 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.28 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.11</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.06 <sup></sup></td>
+<td style="text-align: center;">0.03</td>
+<td style="text-align: center;">-0.03 <sup></sup></td>
+<td style="text-align: center;">0.05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Educational level</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.09 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.03</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.63 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.06</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12 <sup>***</sup></td>
+<td style="text-align: center;">0.02</td>
+<td style="text-align: center;">-0.08 <sup>**</sup></td>
+<td style="text-align: center;">0.03</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Whatsapp weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.05 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.03 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.03 <sup></sup></td>
+<td style="text-align: center;">0.03</td>
+<td style="text-align: center;">0.02 <sup></sup></td>
+<td style="text-align: center;">0.05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Instagram weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.04 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.15 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.05 <sup></sup></td>
+<td style="text-align: center;">0.03</td>
+<td style="text-align: center;">-0.10 <sup></sup></td>
+<td style="text-align: center;">0.05</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Facebook weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.04 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.05 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.00 <sup></sup></td>
+<td style="text-align: center;">0.03</td>
+<td style="text-align: center;">0.04 <sup></sup></td>
+<td style="text-align: center;">0.05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Youtube weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.15 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.11</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.02 <sup></sup></td>
+<td style="text-align: center;">0.03</td>
+<td style="text-align: center;">0.04 <sup></sup></td>
+<td style="text-align: center;">0.05</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Twitter weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.21 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.45 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.17 <sup>***</sup></td>
+<td style="text-align: center;">0.03</td>
+<td style="text-align: center;">0.02 <sup></sup></td>
+<td style="text-align: center;">0.06</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">TikTok weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.15 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.05</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.51 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.05 <sup></sup></td>
+<td style="text-align: center;">0.03</td>
+<td style="text-align: center;">0.07 <sup></sup></td>
+<td style="text-align: center;">0.06</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">Observations</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">1627</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">1644</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">1644</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">1644</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">R<sup>2</sup> / R<sup>2</sup> adjusted</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.047 / 0.040</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.231 / 0.225</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.284 / 0.278</td>
+<td colspan="2" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.016 / 0.009</td>
+</tr>
+<tr class="even">
+<td colspan="9" style="text-align: right; font-style: italic; border-top: double black;">* p&lt;0.05&nbsp;&nbsp;&nbsp;** p&lt;0.01&nbsp;&nbsp;&nbsp;*** p&lt;0.001</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+<section id="table-sharing-study-2" class="level1">
+<h1>Table Sharing study 2</h1>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Table 3. Multinomial model Sharing Study 2</caption>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">&nbsp;</td>
+<td colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">Sharing Missinformation</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Predictors</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">β (Logit)</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">std. Error</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Response</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-2.07 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.48</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Alg. Awareness</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.00 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.07</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Alg. counteractions</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.04 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.04</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Knowledge Miscalibration</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.02 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.06</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Age</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.01 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.00</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Gender (Women = 1)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.16 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Metropolitan Region</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.03 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Educational level</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.06 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.07</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Whatsapp weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.06 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Instagram weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Facebook weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.34 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Youtube weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.10 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Twitter weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.29 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">TikTok weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.25 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.14</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-6.41 <sup>***</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.84</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Alg. Awareness</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.46 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.29</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Alg. counteractions</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.04 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Knowledge Miscalibration</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.21 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.21</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Age</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.01 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.02</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Gender (Women = 1)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-1.26 <sup>**</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.43</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Metropolitan Region</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.00 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.40</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Educational level</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.11 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.23</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Whatsapp weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.81 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.43</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Instagram weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.78 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.47</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Facebook weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.17 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.42</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Youtube weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.28 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.40</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Twitter weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.43 <sup></sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.46</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">TikTok weekly use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.03 <sup>*</sup></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.41</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">Observations</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">1631</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">R<sup>2</sup> / R<sup>2</sup> adjusted</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.296 / 0.295</td>
+</tr>
+<tr class="odd">
+<td colspan="4" style="text-align: right; font-style: italic; border-top: double black;">* p&lt;0.05&nbsp;&nbsp;&nbsp;** p&lt;0.01&nbsp;&nbsp;&nbsp;*** p&lt;0.001</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+<section id="calcular-f-test" class="level1">
+<h1>Calcular F test</h1>
+</section>
 
 </main>
 <!-- /main column -->
@@ -839,18 +3122,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -882,11 +3154,48 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -896,8 +3205,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -909,7 +3227,129 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -953,6 +3393,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -978,6 +3419,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1038,6 +3505,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

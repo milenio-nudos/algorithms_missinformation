@@ -3,7 +3,7 @@ execute:
   echo: false
   warning: false
   
-format: docx
+format: html
 ---
 
 ```{r}
@@ -14,7 +14,9 @@ pacman::p_load(summarytools,
                rempsyc,
                knitr,
                kableExtra,
-               gtsummary)
+               gtsummary,
+               sjPlot)
+
 source("scripts/01_preparation.R")
 
 options(digits = 2)
@@ -56,7 +58,7 @@ var_label(study2$gender) <- "Gender"
 var_label(study2$rm) <- "Metropolitan region"
 var_label(study2$educ_level) <- "Educational level"
 
-study1|>
+study1 <- study1|>
   mutate(educ_level = set_value_labels(educ_level, c(
     "Primary education or less" = 1,
     "Incomplete secondary education" = 2,
@@ -67,7 +69,7 @@ study1|>
   )
 )
 
-study2|>
+study2 <- study2|>
   mutate(educ_level = set_value_labels(educ_level, c(
     "Primary education or less" = 1,
     "Incomplete secondary education" = 2,
@@ -79,6 +81,7 @@ study2|>
 )
 ```
 
+# Table A1. Descriptive Statistics of Study 1 Variables.
 
 ```{r}
 library(knitr)
@@ -179,7 +182,7 @@ data.frame(
 
 ```
 
-
+# Table A3. Summary Study 2 Variables.
 ```{r}
 
 data.frame(
@@ -299,17 +302,184 @@ data.frame(
 
 ```
 
+# Table A2. Rural and Urban Algorithmic Literacy differences in Study 1.
+
+```{r}
+library(dplyr)
+library(tidyr)
+library(janitor)
+
+# =========================
+# 1. Preparar variable zona
+# =========================
+study1_demo <- study1 %>%
+  mutate(
+    zona = case_when(
+      tipo_zona == 1 ~ "Urban",
+      tipo_zona == 2 ~ "Rural",
+      TRUE ~ NA_character_
+    )
+  )%>%
+  filter(!is.na(zona))
+
+# =========================
+# 2. Tamaño muestral
+# =========================
+n_zona <- study1_demo %>%
+  count(zona, name = "N")
+
+# =========================
+# 3. Edad (media y sd)
+# =========================
+edad_zona <- study1_demo %>%
+  group_by(zona) %>%
+  summarise(
+    mean_sd_age = paste0(mean(age, na.rm = TRUE)%>%round(0)," (", sd(age, na.rm = TRUE)%>%round(0), ")"),
+    .groups = "drop"
+  )
+
+# =========================
+# 4. Nivel educacional
+# =========================
+educ_zona <- study1_demo %>%
+  count(zona, educ_level) %>%
+  group_by(zona) %>%
+  mutate(pct = round(100 * n / sum(n), 1)) %>%
+  ungroup()
+
+# =========================
+# 5. Algorithmic literacy
+# =========================
+alg_lit_zona <- study1_demo %>%
+  group_by(zona) %>%
+  summarise(
+    alg_lit = paste0(sum(alg_lit == 1, na.rm = TRUE)," (",round(100 * mean(alg_lit, na.rm = TRUE), 1), ")"),
+    .groups = "drop"
+  )
+
+# =========================
+# 6. Diferencia de medias
+# =========================
+alg_aware_diff <- with(
+  study1_demo,
+  t.test(alg_aware ~ zona)
+)
+
+diff_table <- tibble(
+  diff_means = alg_aware_diff$estimate[1] - alg_aware_diff$estimate[2],
+  p_value    = alg_aware_diff$p.value
+)
+
+alg_aware_table <- data.frame(
+  zona = c("Rural", "Urban"),
+  alg_aware_mean = c("2.2 (p > 0.01)", "2.8")
+)
+
+# =========================
+# 7. Gender by zone
+# =========================
+gender_zona <- study1_demo %>%
+  mutate(
+    gender_lab = case_when(
+      gender == 1 ~ "Women",
+      gender == 0 ~ "Men",
+      TRUE ~ NA_character_
+    )
+  ) %>%
+  count(zona, gender_lab) %>%
+  group_by(zona) %>%
+  mutate(
+    gender_pct = round(100 * n / sum(n), 1),
+    gender_freq_pct = paste0(n, " (", gender_pct, "%)")
+  ) %>%
+  ungroup() %>%
+  select(zona, gender_lab, gender_freq_pct) %>%
+  pivot_wider(
+    names_from = gender_lab,
+    values_from = gender_freq_pct
+  )
+
+gender_tabla <- data.frame(
+  zona = c("Rural", "Urban"),
+  gender = c("M: 184 (41%) / W: 265 (59%)", "M: 327 (43.5%) / W: 424 (56.5%)")
+)
+
+# =========================
+# 8. Educational level by zone
+# =========================
+educ_zona <- study1_demo %>%
+  mutate(
+    educ_lab = case_when(
+      educ_level == 1 ~ "Basic education",
+      educ_level == 2 ~ "Middle school (incomplete)",
+      educ_level == 3 ~ "Middle school (complete)",
+      educ_level == 4 ~ "Technical higher education",
+      educ_level == 5 ~ "University / Postgraduate",
+      TRUE ~ NA_character_
+    )
+  ) %>%
+  filter(!is.na(educ_lab)) %>%
+  count(zona, educ_lab) %>%
+  group_by(zona) %>%
+  mutate(
+    educ_pct = round(100 * n / sum(n), 1),
+    educ_item = paste0(educ_lab, ": ", n, " (", educ_pct, "%)")
+  ) %>%
+  summarise(
+    Education = paste(educ_item, collapse = "; "),
+    .groups = "drop"
+  )
+
+
+
+# =========================
+# 9. Tabla resumen principal
+# =========================
+tabla_principal <- n_zona %>%
+  left_join(alg_lit_zona, by = "zona") %>%
+  left_join(alg_aware_table, by = "zona") %>%  
+  left_join(edad_zona, by = "zona") %>%
+  left_join(gender_tabla, by = "zona") %>%
+  left_join(educ_zona, by = "zona") %>%
+  rename(
+    "Area" = zona,
+    "Know Algorithmic Term" = alg_lit,
+    "Algorithmic Awareness mean" = alg_aware_mean,
+    "Age Mean (sd)" = mean_sd_age,
+    "Gender" = gender
+  )
+
+
+tabla_principal %>%
+  kable()
+#openxlsx::write.xlsx(tabla_principal, "data/rural_comparation_study1.xlsx")
+
+  
+```
+
+
+
 # Modelos
 
 ```{r}
+study1 <- study1 %>%
+  mutate(
+    sharing_original = ifelse(is.na(sharing_original), NA, sharing_original)
+    )
+
+study2 <- study2 %>%
+  mutate(
+    sharing_original = ifelse(is.na(sharing_original), NA, sharing_original)
+    )
+
 study1_model <- study1|>
-  mutate_at(.vars = vars(gender,rm),
+  mutate_at(.vars = vars(gender,rm, sharing_categorical),
             .funs = list(~to_label(.)))|>
   mutate_at(.vars = vars(ppal_ocupation,educ_level),
             .funs = list(~to_numeric(.)))
 
 study2_model <- study2|>
-  mutate_at(.vars = vars(gender,rm),
+  mutate_at(.vars = vars(gender,rm,sharing_categorical),
             .funs = list(~to_label(.)))|>
   mutate_at(.vars = vars(ppal_ocupation,educ_level),
             .funs = list(~to_numeric(.)))
@@ -387,7 +557,7 @@ sjPlot::tab_model(list(sharing_a,sharing_b),
                   transform = NULL)
 ```
 
-
+# Table 2. OLS Models for Study 2
 ```{r}
 exposure_3b <- lm(exposure ~ alg_aware+counteract_algorithm+
                     age+gender+rm+educ_level+
@@ -441,18 +611,6 @@ sjPlot::tab_model(exposure_3b,obj_know_model,subj_know_model,score_model,
 library(dplyr)
 library(haven)
 
-study1_model <- study1|>
-  mutate_at(.vars = vars(gender,rm),
-            .funs = list(~to_label(.)))|>
-  mutate_at(.vars = vars(ppal_ocupation,educ_level),
-            .funs = list(~to_numeric(.)))
-
-study2_model <- study2|>
-  mutate_at(.vars = vars(gender,rm),
-            .funs = list(~to_label(.)))|>
-  mutate_at(.vars = vars(ppal_ocupation,educ_level),
-            .funs = list(~to_numeric(.)))
-
 exposure_a <- lm(exposure ~ 
                    alg_aware + age + gender + rm + educ_level +
                    wsp + ig + fb + yt + tw + tiktok,
@@ -481,20 +639,22 @@ plot_models(exposure_a, exposure_b,
 
 ```
 ```{r}
-# Plot para modelos logísticos (sharing)
-plot_models(sharing_a, sharing_b,
-            show.values = TRUE,
-            show.p = TRUE,
-            ci.lvl = 0.95,
-            m.labels = c("Study 1", "Study 2"),
-            axis.labels = rev(c("Alg. Awareness", "Age", "Gender (female)",
-                                "Region (Metropolitana)", "Educational level",
-                                "Whatsapp weekly use", "Instagram weekly use",
-                                "Facebook weekly use", "Youtube weekly use",
-                                "Twitter weekly use", "TikTok weekly use")),
-            title = "Figure 2. Predictors of perceived misinformation sharing") +
-  theme_minimal(base_size = 14) +
-  theme(legend.position = "bottom")
+plot_model(sharing_a, 
+           transform = NULL,   # 👈 esto evita que se expongan y los deja en logit
+           show.values = TRUE, 
+           value.offset = .3,
+           title = "Predicting misinformation sharing (logit coefficients)",
+           axis.labels = rev(c("Algorithmic awareness",
+                               "Age",
+                               "Gender (female)",
+                               "Region (Metropolitan)",
+                               "Educational level",
+                               "WhatsApp weekly use",
+                               "Instagram weekly use",
+                               "Facebook weekly use",
+                               "YouTube weekly use",
+                               "X (Twitter) weekly use",
+                               "TikTok weekly use"))) 
 
 ```
 
@@ -515,5 +675,635 @@ plot_models(exposure_3b, obj_know_model, subj_know_model, score_model,
             title = "Figure 3. Predictors of exposure and knowledge (Study 2)") +
   theme_minimal(base_size = 14) +
   theme(legend.position = "bottom")
+```
+
+# Appendix
+
+# Table A4. Comparative models study 1 (Filter Alg. Lit.)
+
+```{r}
+s1_filter1 <- study1|>
+  filter(alg_lit_test == 1)|>
+  mutate(
+    gender = to_label(gender),
+    rm = to_label(rm)
+  )
+
+s1_filter2 <- study1|>
+  filter(alg_lit_test == 0)|>
+  mutate(
+    gender = to_label(gender),
+    rm = to_label(rm)
+  )
+
+exposure_a <- lm(exposure ~ 
+                   alg_aware+
+                   age+gender+rm+educ_level+
+                   wsp+ig+fb+yt+tw+tiktok,
+                  data = study1_model)
+
+exposure_filter_a <- lm(exposure ~ 
+                   alg_aware+
+                   age+gender+rm+educ_level+
+                   wsp+ig+fb+yt+tw+tiktok,
+                  data = s1_filter1)
+
+exposure_interaction_a <- lm(exposure ~ 
+                   alg_aware*alg_lit_test + 
+                   age+gender+rm+educ_level+
+                   wsp+ig+fb+yt+tw+tiktok,
+                  data = study1_model)
+
+sharing_a <- glm(sharing~
+                   alg_aware+
+                   age+gender+rm+educ_level+
+                   wsp+ig+fb+yt+tw+tiktok,                  
+                   data = study1_model,family = "binomial")
+
+sharing_filter_a <- glm(sharing~
+                   alg_aware+
+                   age+gender+rm+educ_level+
+                   wsp+ig+fb+yt+tw+tiktok,                
+                   data = s1_filter1,family = "binomial")
+
+sharing_interaction_a <- glm(sharing~
+                   alg_aware*alg_lit_test + 
+                   age+gender+rm+educ_level+
+                   wsp+ig+fb+yt+tw+tiktok,                  
+                   data = study1_model,family = "binomial")
+
+# lm.beta(exposure_a)
+#lm.beta(exposure_filter_a)
+
+#effectsize::standardize_parameters(sharing_a)
+#effectsize::standardize_parameters(sharing_filter_a)
+
+
+sjPlot::tab_model(list(exposure_a, exposure_filter_a,
+                       sharing_a, sharing_filter_a), 
+                  show.ci=FALSE, 
+                  p.style = "stars", 
+                  dv.labels = c("Exposure: Original","Exposure: Alg == 1",
+                                "Sharing: Original", "Sharing: Alg == 1"),
+                  string.est = c("β (OLS/Logit)"),
+                  pred.labels = c("(Intercept)",
+                                  "Alg. Awareness",
+                                  "Age",
+                                  "Gender (Women = 1)",
+                                  "Region (MR = 1)", 
+                                  "Educational level",
+                                  "Whatsapp weekly use", 
+                                  "Instagram weekly use", 
+                                  "Facebook weekly use", 
+                                  "Youtube weekly use", 
+                                  "Twitter weekly use", 
+                                  "TikTok weekly use"),
+                  title = "Table X. Comparative models study 1 (Filter Alg. Lit.)",
+                  transform = NULL)
+
+
+```
+
+```{r}
+```
+
+
+## Sharing with original scale
+
+```{r}
+
+sharing_a_original <- lm(sharing_original~
+                   alg_aware+
+                   age+gender+rm+educ_level+
+                   wsp+ig+fb+yt+tw+tiktok,                  
+                   data = study1_model)
+
+sharing_a <- glm(sharing~
+                   alg_aware+
+                   age+gender+rm+educ_level+
+                   wsp+ig+fb+yt+tw+tiktok,                  
+                   data = study1_model,family = "binomial")
+
+
+sjPlot::tab_model(list(sharing_a, sharing_a_original), 
+                  show.ci=FALSE, 
+                  p.style = "stars", 
+                  dv.labels = c("Sharing Dicothomical Study 1","Sharing Study 1 Continue Scale"),
+                  pred.labels = c("(Intercept)",
+                                  "Alg. Awareness",
+                                  "Age",
+                                  "Gender (Women = 1)",
+                                  "Region (MR = 1)", 
+                                  "Educational level",
+                                  "Whatsapp weekly use", 
+                                  "Instagram weekly use", 
+                                  "Facebook weekly use", 
+                                  "Youtube weekly use", 
+                                  "Twitter weekly use", 
+                                  "TikTok weekly use"),
+                  title = "Table X. Comparative models Sharing recodification Study 1",
+                  transform = NULL)
+```
+
+# Table 3. Multinomial model for Sharing Misinformation in Study 2
+
+```{r}
+library(nnet)
+
+# Study 2: Binomial model (already specified, included here for completeness)
+#sharing_b <- glm(
+ # sharing ~
+  #  alg_aware + counteract_algorithm +
+   # age + gender + rm + educ_level +
+    #wsp + ig + fb + yt + tw + tiktok,
+  #data = study2_model,
+  #family = "binomial"
+#)
+
+# Study 2: Multinomial model
+sharing_b_original <- multinom(
+  sharing_categorical ~
+    alg_aware + counteract_algorithm +
+    age + gender + rm + educ_level +
+    wsp + ig + fb + yt + tw + tiktok,
+  data = study2_model,
+  trace = FALSE
+)
+
+# Comparative table
+sjPlot::tab_model(
+  list(
+#    sharing_b,
+    sharing_b_original
+  ),
+  show.ci = FALSE,
+  show.se = TRUE,
+  p.style = "stars",
+  dv.labels = c(
+ #   "Sharing Dichotomical Study 2",
+    "Sharing Study 2 Categorical (Multinomial)"
+  ),
+  pred.labels = c(
+    "(Intercept)",
+    "Alg. Awareness",
+    "Alg. Awareness",
+    "Age",
+    "Age",
+    "Gender (Women = 1)",
+    "Gender (Women = 1)",
+    "Region (MR = 1)",
+    "Region (MR = 1)",
+    "Educational level",
+    "Educational level",
+    "Whatsapp weekly use",
+    "Whatsapp weekly use",
+    "Instagram weekly use",
+    "Instagram weekly use",
+    "Facebook weekly use",
+    "Facebook weekly use",
+    "Youtube weekly use",
+    "Youtube weekly use",
+    "Twitter weekly use",
+    "Twitter weekly use",
+    "TikTok weekly use",
+    "TikTok weekly use"
+  ),
+  title = "Table X. Sharing study 2"
+)
+```
+
+# Objective Knowledge recodification
+
+```{r}
+library(nnet)
+library(sjPlot)
+
+# -----------------------------
+# Logistic models (Correct vs Not correct)
+# -----------------------------
+
+know_p39_logit <- glm(
+  p39_a ~ alg_aware + age + gender + rm + educ_level +
+    wsp + ig + fb + yt + tw + tiktok,
+  data = study2, family = "binomial"
+)
+
+know_p41_logit <- glm(
+  p41_a ~ alg_aware + age + gender + rm + educ_level +
+    wsp + ig + fb + yt + tw + tiktok,
+  data = study2, family = "binomial"
+)
+
+know_p43_logit <- glm(
+  p43_a ~ alg_aware + age + gender + rm + educ_level +
+    wsp + ig + fb + yt + tw + tiktok,
+  data = study2, family = "binomial"
+)
+
+know_p45_logit <- glm(
+  p45_a ~ alg_aware + age + gender + rm + educ_level +
+    wsp + ig + fb + yt + tw + tiktok,
+  data = study2, family = "binomial"
+)
+
+know_p47_logit <- glm(
+  p47_a ~ alg_aware + age + gender + rm + educ_level +
+    wsp + ig + fb + yt + tw + tiktok,
+  data = study2, family = "binomial"
+)
+
+know_p49_logit <- glm(
+  p49_a ~ alg_aware + age + gender + rm + educ_level +
+    wsp + ig + fb + yt + tw + tiktok,
+  data = study2, family = "binomial"
+)
+
+# -----------------------------
+# Multinomial models (Correct / Incorrect / Don't know)
+# -----------------------------
+
+know_p39_multi <- multinom(
+  p39_b ~ alg_aware + age + gender + rm + educ_level +
+    wsp + ig + fb + yt + tw + tiktok,
+  data = study2, trace = FALSE
+)
+
+know_p41_multi <- multinom(
+  p41_b ~ alg_aware + age + gender + rm + educ_level +
+    wsp + ig + fb + yt + tw + tiktok,
+  data = study2, trace = FALSE
+)
+
+know_p43_multi <- multinom(
+  p43_b ~ alg_aware + age + gender + rm + educ_level +
+    wsp + ig + fb + yt + tw + tiktok,
+  data = study2, trace = FALSE
+)
+
+know_p45_multi <- multinom(
+  p45_b ~ alg_aware + age + gender + rm + educ_level +
+    wsp + ig + fb + yt + tw + tiktok,
+  data = study2, trace = FALSE
+)
+
+know_p47_multi <- multinom(
+  p47_b ~ alg_aware + age + gender + rm + educ_level +
+    wsp + ig + fb + yt + tw + tiktok,
+  data = study2, trace = FALSE
+)
+
+know_p49_multi <- multinom(
+  p49_b ~ alg_aware + age + gender + rm + educ_level +
+    wsp + ig + fb + yt + tw + tiktok,
+  data = study2, trace = FALSE
+)
+```
+
+```{r}
+sjPlot::tab_model(
+  list(
+    know_p39_logit,
+    know_p41_logit,
+    know_p43_logit,
+    know_p45_logit,
+    know_p47_logit,
+    know_p49_logit
+  ),
+  show.ci = FALSE,
+  show.se = TRUE,
+  p.style = "stars",
+  dv.labels = c(
+    "P39 Correct vs Not",
+    "P41 Correct vs Not",
+    "P43 Correct vs Not",
+    "P45 Correct vs Not",
+    "P47 Correct vs Not",
+    "P49 Correct vs Not"
+  ),
+  pred.labels = c(
+    "(Intercept)",
+    "Alg. Awareness",
+    "Age",
+    "Gender (Women = 1)",
+    "Region (MR = 1)",
+    "Educational level",
+    "Whatsapp weekly use",
+    "Instagram weekly use",
+    "Facebook weekly use",
+    "Youtube weekly use",
+    "Twitter weekly use",
+    "TikTok weekly use"
+  ),
+  title = "Table X.a. Logistic models predicting correct objective knowledge (Study 2)"
+)
+
+```
+
+```{r}
+sjPlot::tab_model(
+  know_p39_multi,
+  show.ci = FALSE,
+  show.se = TRUE,
+  p.style = "stars",
+  dv.labels = "P39 Objective knowledge",
+  pred.labels = c(
+    "(Intercept)",
+    "Alg. Awareness",
+    "Age",
+    "Gender (Women = 1)",
+    "Region (MR = 1)",
+    "Educational level",
+    "Whatsapp weekly use",
+    "Instagram weekly use",
+    "Facebook weekly use",
+    "Youtube weekly use",
+    "Twitter weekly use",
+    "TikTok weekly use"
+  ),
+  title = "Table A1. Multinomial model for P39 (Correct / Incorrect / Don't know)"
+)
+
+sjPlot::tab_model(
+  know_p41_multi,
+  show.ci = FALSE,
+  show.se = TRUE,
+  p.style = "stars",
+  dv.labels = "P41 Objective knowledge",
+  pred.labels = c(
+    "(Intercept)",
+    "Alg. Awareness",
+    "Age",
+    "Gender (Women = 1)",
+    "Region (MR = 1)",
+    "Educational level",
+    "Whatsapp weekly use",
+    "Instagram weekly use",
+    "Facebook weekly use",
+    "Youtube weekly use",
+    "Twitter weekly use",
+    "TikTok weekly use"
+  ),
+  title = "Table A2. Multinomial model for P41 (Correct / Incorrect / Don't know)"
+)
+
+sjPlot::tab_model(
+  know_p43_multi,
+  show.ci = FALSE,
+  show.se = TRUE,
+  p.style = "stars",
+  dv.labels = "P43 Objective knowledge",
+  pred.labels = c(
+    "(Intercept)",
+    "Alg. Awareness",
+    "Age",
+    "Gender (Women = 1)",
+    "Region (MR = 1)",
+    "Educational level",
+    "Whatsapp weekly use",
+    "Instagram weekly use",
+    "Facebook weekly use",
+    "Youtube weekly use",
+    "Twitter weekly use",
+    "TikTok weekly use"
+  ),
+  title = "Table A3. Multinomial model for P43 (Correct / Incorrect / Don't know)"
+)
+
+sjPlot::tab_model(
+  know_p45_multi,
+  show.ci = FALSE,
+  show.se = TRUE,
+  p.style = "stars",
+  dv.labels = "P45 Objective knowledge",
+  pred.labels = c(
+    "(Intercept)",
+    "Alg. Awareness",
+    "Age",
+    "Gender (Women = 1)",
+    "Region (MR = 1)",
+    "Educational level",
+    "Whatsapp weekly use",
+    "Instagram weekly use",
+    "Facebook weekly use",
+    "Youtube weekly use",
+    "Twitter weekly use",
+    "TikTok weekly use"
+  ),
+  title = "Table A4. Multinomial model for P45 (Correct / Incorrect / Don't know)"
+)
+
+sjPlot::tab_model(
+  know_p47_multi,
+  show.ci = FALSE,
+  show.se = TRUE,
+  p.style = "stars",
+  dv.labels = "P47 Objective knowledge",
+  pred.labels = c(
+    "(Intercept)",
+    "Alg. Awareness",
+    "Age",
+    "Gender (Women = 1)",
+    "Region (MR = 1)",
+    "Educational level",
+    "Whatsapp weekly use",
+    "Instagram weekly use",
+    "Facebook weekly use",
+    "Youtube weekly use",
+    "Twitter weekly use",
+    "TikTok weekly use"
+  ),
+  title = "Table A5. Multinomial model for P47 (Correct / Incorrect / Don't know)"
+)
+
+sjPlot::tab_model(
+  know_p49_multi,
+  show.ci = FALSE,
+  show.se = TRUE,
+  p.style = "stars",
+  dv.labels = "P49 Objective knowledge",
+  pred.labels = c(
+    "(Intercept)",
+    "Alg. Awareness",
+    "Age",
+    "Gender (Women = 1)",
+    "Region (MR = 1)",
+    "Educational level",
+    "Whatsapp weekly use",
+    "Instagram weekly use",
+    "Facebook weekly use",
+    "Youtube weekly use",
+    "Twitter weekly use",
+    "TikTok weekly use"
+  ),
+  title = "Table A6. Multinomial model for P49 (Correct / Incorrect / Don't know)"
+)
+
+```
+
+# Table study 1
+
+```{r}
+sjPlot::tab_model(list(exposure_a,sharing_a_original), 
+                  show.ci=FALSE, 
+                  p.style = "stars", 
+                  dv.labels = c("Exposure","Sharing"),
+                  pred.labels = c("(Intercept)",
+                                  "Alg. Awareness",
+                                  "Age",
+                                  "Gender (Women = 1)",
+                                  "Region (MR = 1)", 
+                                  "Educational level",
+                                  "Whatsapp weekly use", 
+                                  "Instagram weekly use", 
+                                  "Facebook weekly use", 
+                                  "Youtube weekly use", 
+                                  "Twitter weekly use", 
+                                  "TikTok weekly use"),
+                  string.pred = "Predictors", 
+                  string.est = "β",
+                  show.se = T,
+                  transform = NULL,
+                  title = "Table 1. Predicting Missinformation Exposure and Sharing in Study 1")
+```
+
+# Table Study 2
+
+```{r}
+exposure_3b <- lm(exposure ~ alg_aware+counteract_algorithm+
+                    age+gender+rm+educ_level+
+                    wsp+ig+fb+yt+tw+tiktok,
+                data=study2_model)
+
+obj_know_model<-lm(obj_know ~ alg_aware+counteract_algorithm+
+                     age+gender+rm+educ_level+
+                     wsp+ig+fb+yt+tw+tiktok,
+                   data=study2_model)
+
+subj_know_model <- lm(subj_know ~ alg_aware+counteract_algorithm+
+                    age+gender+rm+educ_level+
+                      wsp+ig+fb+yt+tw+tiktok,
+                  data=study2_model)
+
+score_model <- lm(subj_know_def ~ alg_aware+counteract_algorithm+
+                        age+gender+rm+educ_level+
+                    wsp+ig+fb+yt+tw+tiktok,
+                      data=study2_model)
+
+sjPlot::tab_model(exposure_3b,obj_know_model,subj_know_model,score_model,
+          show.ci = FALSE,
+          p.style = "stars",
+          dv.labels = c("Perceived Misinformation Exposure",
+                        "Objective news knowledge",
+                        "Subjective news knowledge",
+                        "Knowledge overconfidence"),
+          pred.labels = c("(Intercept)",
+                          "Alg. Awareness",
+                          "Alg. counteractions",
+                          "Age",
+                          "Gender (Women = 1)",
+                          "Metropolitan Region", 
+                          "Educational level",
+                          "Whatsapp weekly use", 
+                          "Instagram weekly use", 
+                          "Facebook weekly use", 
+                          "Youtube weekly use", 
+                          "Twitter weekly use", 
+                          "TikTok weekly use"),
+          string.est = "β",
+          show.se=T, 
+          title = "Table 3. OLS models Study 2")
+```
+
+# Table Sharing study 2
+
+```{r}
+library(nnet)
+# Study 2: Multinomial model
+sharing_b_original <- multinom(
+  sharing_categorical ~
+    alg_aware + counteract_algorithm + subj_know_def +
+    age + gender + rm + educ_level +
+    wsp + ig + fb + yt + tw + tiktok,
+  data = study2_model,
+  trace = FALSE
+)
+
+sjPlot::tab_model(sharing_b_original,
+          show.ci = FALSE,
+          p.style = "stars",
+          dv.labels = c("Sharing Missinformation"),
+          string.est = "β (Logit)",
+          pred.labels = c("(Intercept)",
+                          "Alg. Awareness",
+                          "Alg. counteractions",
+                          "Knowledge Miscalibration",
+                          "Age",
+                          "Gender (Women = 1)",
+                          "Metropolitan Region", 
+                          "Educational level",
+                          "Whatsapp weekly use", 
+                          "Instagram weekly use", 
+                          "Facebook weekly use", 
+                          "Youtube weekly use", 
+                          "Twitter weekly use", 
+                          "TikTok weekly use",
+                          "(Intercept)",
+                          "Alg. Awareness",
+                          "Alg. counteractions",
+                          "Knowledge Miscalibration",
+                          "Age",
+                          "Gender (Women = 1)",
+                          "Metropolitan Region", 
+                          "Educational level",
+                          "Whatsapp weekly use", 
+                          "Instagram weekly use", 
+                          "Facebook weekly use", 
+                          "Youtube weekly use", 
+                          "Twitter weekly use", 
+                          "TikTok weekly use"),
+          show.se=T, 
+          transform = NULL,
+          title = "Table 3. Multinomial model Sharing Study 2")
+```
+
+# Calcular F test
+
+```{r}
+# Study 1: Global F-tests
+
+#summary(exposure_a)
+#summary(sharing_a_original)
+
+# Alternativamente (misma información del test global)
+#anova(exposure_a)
+#anova(sharing_a_original)
+
+```
+
+```{r}
+# Study 2: Global F-tests for OLS models
+
+#summary(exposure_3b)
+#summary(obj_know_model)
+#summary(subj_know_model)
+#summary(score_model)
+
+# O bien
+#anova(exposure_3b)
+#anova(obj_know_model)
+#anova(subj_know_model)
+#anova(score_model)
+
+```
+```{r}
+#sharing_null <- multinom(
+#  sharing_categorical ~ 1,
+ # data = study2_model,
+  #trace = FALSE
+#)
+
+#anova(sharing_null, sharing_b_original, test = "Chisq")
+
+
 ```
 
