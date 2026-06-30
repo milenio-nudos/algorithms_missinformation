@@ -111,7 +111,47 @@ study2_model <- study2|>
 # Table 1. Predicting Misinformation Exposure and Sharing in Study 1
 
 ```{r}
+exposure_a <- lm(
+  exposure ~
+    alg_aware +
+    age + gender + rm + educ_level +
+    wsp + ig + fb + yt + tw + tiktok,
+  data = study1_model
+)
 
+sharing_a_original <- lm(
+  sharing_original ~ 
+    alg_aware +
+    age +  gender + rm + educ_level +
+    wsp + ig + fb + yt + tw + tiktok,
+  data = study1_model
+)
+
+sjPlot::tab_model(
+  list(exposure_a, sharing_a_original),
+  show.ci = FALSE,
+  p.style = "stars",
+  dv.labels = c("Exposure", "Sharing"),
+  pred.labels = c(
+    "(Intercept)",
+    "Alg. Awareness",
+    "Age",
+    "Gender (Women = 1)",
+    "Region (MR = 1)",
+    "Educational level",
+    "Whatsapp weekly use",
+    "Instagram weekly use",
+    "Facebook weekly use",
+    "Youtube weekly use",
+    "Twitter weekly use",
+    "TikTok weekly use"
+  ),
+  string.pred = "Predictors",
+  string.est = "β",
+  show.se = T,
+  transform = NULL,
+  title = "Table 1. Predicting Missinformation Exposure and Sharing in Study 1"
+)
 ```
 
 # Table 2. OLS Models for Study 2

@@ -1143,27 +1143,7 @@ sjPlot::tab_model(
 # Table study 1
 
 ```{r}
-sjPlot::tab_model(list(exposure_a,sharing_a_original), 
-                  show.ci=FALSE, 
-                  p.style = "stars", 
-                  dv.labels = c("Exposure","Sharing"),
-                  pred.labels = c("(Intercept)",
-                                  "Alg. Awareness",
-                                  "Age",
-                                  "Gender (Women = 1)",
-                                  "Region (MR = 1)", 
-                                  "Educational level",
-                                  "Whatsapp weekly use", 
-                                  "Instagram weekly use", 
-                                  "Facebook weekly use", 
-                                  "Youtube weekly use", 
-                                  "Twitter weekly use", 
-                                  "TikTok weekly use"),
-                  string.pred = "Predictors", 
-                  string.est = "β",
-                  show.se = T,
-                  transform = NULL,
-                  title = "Table 1. Predicting Missinformation Exposure and Sharing in Study 1")
+
 ```
 
 # Table Study 2
