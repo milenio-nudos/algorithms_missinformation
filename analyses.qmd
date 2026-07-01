@@ -208,7 +208,7 @@ library(nnet)
 # Study 2: Multinomial model
 sharing_b_original <- multinom(
   sharing_categorical ~
-    alg_aware + counteract_algorithm +
+    alg_aware + counteract_algorithm + subj_know_def +
     age + gender + rm + educ_level +
     wsp + ig + fb + yt + tw + tiktok,
   data = study2_model,
@@ -223,21 +223,6 @@ sjPlot::tab_model(
   show.se = TRUE,
   dv.labels = c(
     "Sharing Study 2 Categorical (Multinomial)"
-  ),
-  pred.labels = c(
-    "(Intercept)",
-    "Alg. Awareness",
-    "Alg. counteractions",
-    "Age",
-    "Gender (Women = 1)",
-    "Region (MR = 1)",
-    "Educational level",
-    "Whatsapp weekly use",
-    "Instagram weekly use",
-    "Facebook weekly use",
-    "Youtube weekly use",
-    "Twitter weekly use",
-    "TikTok weekly use"
   ),
   string.est = "b (logit)",
   transform = NULL,
@@ -563,25 +548,22 @@ table_a3 |>
 # Table A4. Comparative models study 1 (Filter Alg. Lit.)
 
 ```{r}
+study1_model <- study1|>
+  mutate_at(.vars = vars(gender, rm),
+            .funs = list(~to_label(.)))
+
 s1_filter1 <- study1|>
-  filter(alg_lit_test == 1)|>
-  mutate(
-    gender = to_label(gender),
-    rm = to_label(rm)
-  )
+  filter(alg_lit_test == 1)
 
 s1_filter2 <- study1|>
-  filter(alg_lit_test == 0)|>
-  mutate(
-    gender = to_label(gender),
-    rm = to_label(rm)
-  )
+  filter(alg_lit_test == 0)
+
 
 exposure_a <- lm(exposure ~ 
                    alg_aware+
                    age+gender+rm+educ_level+
                    wsp+ig+fb+yt+tw+tiktok,
-                  data = study1_model)
+                  data = study1)
 
 exposure_filter_a <- lm(exposure ~ 
                    alg_aware+
@@ -589,29 +571,29 @@ exposure_filter_a <- lm(exposure ~
                    wsp+ig+fb+yt+tw+tiktok,
                   data = s1_filter1)
 
-exposure_interaction_a <- lm(exposure ~ 
-                   alg_aware*alg_lit_test + 
-                   age+gender+rm+educ_level+
-                   wsp+ig+fb+yt+tw+tiktok,
-                  data = study1_model)
+#exposure_interaction_a <- lm(exposure ~ 
+ #                  alg_aware*alg_lit_test + 
+  #                 age+gender+rm+educ_level+
+   #                wsp+ig+fb+yt+tw+tiktok,
+    #              data = study1_model)
 
 sharing_a <- glm(sharing~
                    alg_aware+
                    age+gender+rm+educ_level+
                    wsp+ig+fb+yt+tw+tiktok,                  
-                   data = study1_model,family = "binomial")
+                   data = study1,family = "binomial")
 
 sharing_filter_a <- glm(sharing~
-                   alg_aware+
+                  alg_aware+
                    age+gender+rm+educ_level+
                    wsp+ig+fb+yt+tw+tiktok,                
                    data = s1_filter1,family = "binomial")
 
-sharing_interaction_a <- glm(sharing~
-                   alg_aware*alg_lit_test + 
-                   age+gender+rm+educ_level+
-                   wsp+ig+fb+yt+tw+tiktok,                  
-                   data = study1_model,family = "binomial")
+#sharing_interaction_a <- glm(sharing~
+ #                  alg_aware*alg_lit_test + 
+  #                 age+gender+rm+educ_level+
+   #                wsp+ig+fb+yt+tw+tiktok,                  
+    #               data = study1_model,family = "binomial")
 
 # lm.beta(exposure_a)
 #lm.beta(exposure_filter_a)

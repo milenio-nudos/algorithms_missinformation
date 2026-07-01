@@ -664,7 +664,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Study 2: Multinomial model</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>sharing_b_original <span class="ot">&lt;-</span> <span class="fu">multinom</span>(</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  sharing_categorical <span class="sc">~</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    alg_aware <span class="sc">+</span> counteract_algorithm <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    alg_aware <span class="sc">+</span> counteract_algorithm <span class="sc">+</span> subj_know_def <span class="sc">+</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    age <span class="sc">+</span> gender <span class="sc">+</span> rm <span class="sc">+</span> educ_level <span class="sc">+</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    wsp <span class="sc">+</span> ig <span class="sc">+</span> fb <span class="sc">+</span> yt <span class="sc">+</span> tw <span class="sc">+</span> tiktok,</span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> study2_model,</span>
@@ -680,28 +680,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">dv.labels =</span> <span class="fu">c</span>(</span>
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Sharing Study 2 Categorical (Multinomial)"</span></span>
 <span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">pred.labels =</span> <span class="fu">c</span>(</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"(Intercept)"</span>,</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Alg. Awareness"</span>,</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Alg. counteractions"</span>,</span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Age"</span>,</span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Gender (Women = 1)"</span>,</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Region (MR = 1)"</span>,</span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Educational level"</span>,</span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Whatsapp weekly use"</span>,</span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Instagram weekly use"</span>,</span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Facebook weekly use"</span>,</span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Youtube weekly use"</span>,</span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Twitter weekly use"</span>,</span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    <span class="st">"TikTok weekly use"</span></span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">string.est =</span> <span class="st">"b (logit)"</span>,</span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">transform =</span> <span class="cn">NULL</span>,</span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"Sharing study 2"</span></span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">string.est =</span> <span class="st">"b (logit)"</span>,</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">transform =</span> <span class="cn">NULL</span>,</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"Sharing study 2"</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>Sharing study 2</caption>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">&nbsp;</td>
@@ -716,184 +708,202 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-2.06</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-2.07</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.48</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>&lt;0.001</strong></td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
 </tr>
 <tr class="even">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">alg_aware</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Algorithmic Awareness</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.00</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.07</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.962</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.976</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">counteract_algorithm</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Algorithmic<br>
+actions/counteractions</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.04</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.04</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.275</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.269</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
 </tr>
 <tr class="even">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">age</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Knowledge overconfidence</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.02</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.06</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.717</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Age</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.01</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.00</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.054</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.053</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">genderWomen</td>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Gender: Women</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.16</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.204</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.203</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
 </tr>
-<tr class="even">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">rmRegión Metropolitana</td>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Metropolitan region:<br>
+Región Metropolitana</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.03</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.771</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.775</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">educ_level</td>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Educational level</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.06</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.07</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.351</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
-</tr>
-<tr class="even">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">wsp</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.06</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.635</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.365</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">ig</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Weekly Whatsapp use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.06</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.327</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.638</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
 </tr>
 <tr class="even">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">fb</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Weekly Instagram use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.336</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Weekly Facebook use</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.34</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>0.009</strong></td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">yt</td>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Weekly Youtube use</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.10</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.12</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.401</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.396</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
 </tr>
-<tr class="even">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tw</td>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Weekly Twitter use</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.29</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>0.023</strong></td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tiktok</td>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Weekly Tiktok use</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.25</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.14</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.063</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.062</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, pero después descubrí que era contenido falso</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">-6.41</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.84</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>&lt;0.001</strong></td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">alg_aware</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.48</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.30</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.105</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>0.001</strong></td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
 </tr>
 <tr class="even">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">counteract_algorithm</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Algorithmic Awareness</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.46</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.29</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.119</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Algorithmic<br>
+actions/counteractions</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.04</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.13</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.727</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">age</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.01</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.02</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.510</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.774</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
 </tr>
 <tr class="even">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">genderWomen</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Knowledge overconfidence</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.21</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.21</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.320</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Age</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.01</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.02</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.531</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Gender: Women</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">-1.26</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.43</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>0.003</strong></td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">rmRegión Metropolitana</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.02</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Metropolitan region:<br>
+Región Metropolitana</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.00</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.40</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.960</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.995</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
 </tr>
 <tr class="even">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">educ_level</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.13</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Educational level</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.11</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.23</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.556</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.645</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">wsp</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Weekly Whatsapp use</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.81</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.43</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.059</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
 </tr>
 <tr class="even">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">ig</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.74</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Weekly Instagram use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.78</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.47</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.110</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.098</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">fb</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.18</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Weekly Facebook use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.17</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.42</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.679</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.685</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
 </tr>
 <tr class="even">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">yt</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.29</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Weekly Youtube use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.28</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.40</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.472</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.487</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tw</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.40</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Weekly Twitter use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.43</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.46</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.389</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.358</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
 </tr>
 <tr class="even">
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">tiktok</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.05</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">Weekly Tiktok use</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.03</td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.41</td>
-<td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>0.010</strong></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>0.011</strong></td>
 <td style="text-align: left; padding: 0.2cm; vertical-align: top;">Sí, y lo hice sabiendo que era contenido falso</td>
 </tr>
 <tr class="odd">
@@ -902,7 +912,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">R<sup>2</sup> / R<sup>2</sup> adjusted</td>
-<td colspan="4" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.037 / 0.036</td>
+<td colspan="4" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.038 / 0.037</td>
 </tr>
 </tbody>
 </table>
@@ -1560,84 +1570,81 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="table-a4.-comparative-models-study-1-filter-alg.-lit." class="level1">
 <h1>Table A4. Comparative models study 1 (Filter Alg. Lit.)</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>s1_filter1 <span class="ot">&lt;-</span> study1<span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(alg_lit_test <span class="sc">==</span> <span class="dv">1</span>)<span class="sc">|&gt;</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">gender =</span> <span class="fu">to_label</span>(gender),</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">rm =</span> <span class="fu">to_label</span>(rm)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>study1_model <span class="ot">&lt;-</span> study1<span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="at">.vars =</span> <span class="fu">vars</span>(gender, rm),</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">.funs =</span> <span class="fu">list</span>(<span class="sc">~</span><span class="fu">to_label</span>(.)))</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>s1_filter1 <span class="ot">&lt;-</span> study1<span class="sc">|&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(alg_lit_test <span class="sc">==</span> <span class="dv">1</span>)</span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>s1_filter2 <span class="ot">&lt;-</span> study1<span class="sc">|&gt;</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(alg_lit_test <span class="sc">==</span> <span class="dv">0</span>)<span class="sc">|&gt;</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">gender =</span> <span class="fu">to_label</span>(gender),</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">rm =</span> <span class="fu">to_label</span>(rm)</span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>exposure_a <span class="ot">&lt;-</span> <span class="fu">lm</span>(exposure <span class="sc">~</span> </span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>                   alg_aware<span class="sc">+</span></span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>                   age<span class="sc">+</span>gender<span class="sc">+</span>rm<span class="sc">+</span>educ_level<span class="sc">+</span></span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>                   wsp<span class="sc">+</span>ig<span class="sc">+</span>fb<span class="sc">+</span>yt<span class="sc">+</span>tw<span class="sc">+</span>tiktok,</span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> study1_model)</span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>exposure_filter_a <span class="ot">&lt;-</span> <span class="fu">lm</span>(exposure <span class="sc">~</span> </span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>                   alg_aware<span class="sc">+</span></span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>                   age<span class="sc">+</span>gender<span class="sc">+</span>rm<span class="sc">+</span>educ_level<span class="sc">+</span></span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>                   wsp<span class="sc">+</span>ig<span class="sc">+</span>fb<span class="sc">+</span>yt<span class="sc">+</span>tw<span class="sc">+</span>tiktok,</span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> s1_filter1)</span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>exposure_interaction_a <span class="ot">&lt;-</span> <span class="fu">lm</span>(exposure <span class="sc">~</span> </span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>                   alg_aware<span class="sc">*</span>alg_lit_test <span class="sc">+</span> </span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>                   age<span class="sc">+</span>gender<span class="sc">+</span>rm<span class="sc">+</span>educ_level<span class="sc">+</span></span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>                   wsp<span class="sc">+</span>ig<span class="sc">+</span>fb<span class="sc">+</span>yt<span class="sc">+</span>tw<span class="sc">+</span>tiktok,</span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> study1_model)</span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>sharing_a <span class="ot">&lt;-</span> <span class="fu">glm</span>(sharing<span class="sc">~</span></span>
-<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>                   alg_aware<span class="sc">+</span></span>
-<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>                   age<span class="sc">+</span>gender<span class="sc">+</span>rm<span class="sc">+</span>educ_level<span class="sc">+</span></span>
-<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>                   wsp<span class="sc">+</span>ig<span class="sc">+</span>fb<span class="sc">+</span>yt<span class="sc">+</span>tw<span class="sc">+</span>tiktok,                  </span>
-<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> study1_model,<span class="at">family =</span> <span class="st">"binomial"</span>)</span>
-<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>sharing_filter_a <span class="ot">&lt;-</span> <span class="fu">glm</span>(sharing<span class="sc">~</span></span>
-<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>                   alg_aware<span class="sc">+</span></span>
-<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a>                   age<span class="sc">+</span>gender<span class="sc">+</span>rm<span class="sc">+</span>educ_level<span class="sc">+</span></span>
-<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a>                   wsp<span class="sc">+</span>ig<span class="sc">+</span>fb<span class="sc">+</span>yt<span class="sc">+</span>tw<span class="sc">+</span>tiktok,                </span>
-<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> s1_filter1,<span class="at">family =</span> <span class="st">"binomial"</span>)</span>
-<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>sharing_interaction_a <span class="ot">&lt;-</span> <span class="fu">glm</span>(sharing<span class="sc">~</span></span>
-<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>                   alg_aware<span class="sc">*</span>alg_lit_test <span class="sc">+</span> </span>
-<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a>                   age<span class="sc">+</span>gender<span class="sc">+</span>rm<span class="sc">+</span>educ_level<span class="sc">+</span></span>
-<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a>                   wsp<span class="sc">+</span>ig<span class="sc">+</span>fb<span class="sc">+</span>yt<span class="sc">+</span>tw<span class="sc">+</span>tiktok,                  </span>
-<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> study1_model,<span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(alg_lit_test <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>exposure_a <span class="ot">&lt;-</span> <span class="fu">lm</span>(exposure <span class="sc">~</span> </span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>                   alg_aware<span class="sc">+</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>                   age<span class="sc">+</span>gender<span class="sc">+</span>rm<span class="sc">+</span>educ_level<span class="sc">+</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>                   wsp<span class="sc">+</span>ig<span class="sc">+</span>fb<span class="sc">+</span>yt<span class="sc">+</span>tw<span class="sc">+</span>tiktok,</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> study1)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>exposure_filter_a <span class="ot">&lt;-</span> <span class="fu">lm</span>(exposure <span class="sc">~</span> </span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>                   alg_aware<span class="sc">+</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>                   age<span class="sc">+</span>gender<span class="sc">+</span>rm<span class="sc">+</span>educ_level<span class="sc">+</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>                   wsp<span class="sc">+</span>ig<span class="sc">+</span>fb<span class="sc">+</span>yt<span class="sc">+</span>tw<span class="sc">+</span>tiktok,</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> s1_filter1)</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a><span class="co">#exposure_interaction_a &lt;- lm(exposure ~ </span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a> <span class="co">#                  alg_aware*alg_lit_test + </span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>  <span class="co">#                 age+gender+rm+educ_level+</span></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>   <span class="co">#                wsp+ig+fb+yt+tw+tiktok,</span></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>    <span class="co">#              data = study1_model)</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>sharing_a <span class="ot">&lt;-</span> <span class="fu">glm</span>(sharing<span class="sc">~</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>                   alg_aware<span class="sc">+</span></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>                   age<span class="sc">+</span>gender<span class="sc">+</span>rm<span class="sc">+</span>educ_level<span class="sc">+</span></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>                   wsp<span class="sc">+</span>ig<span class="sc">+</span>fb<span class="sc">+</span>yt<span class="sc">+</span>tw<span class="sc">+</span>tiktok,                  </span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> study1,<span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a>sharing_filter_a <span class="ot">&lt;-</span> <span class="fu">glm</span>(sharing<span class="sc">~</span></span>
+<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>                  alg_aware<span class="sc">+</span></span>
+<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a>                   age<span class="sc">+</span>gender<span class="sc">+</span>rm<span class="sc">+</span>educ_level<span class="sc">+</span></span>
+<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>                   wsp<span class="sc">+</span>ig<span class="sc">+</span>fb<span class="sc">+</span>yt<span class="sc">+</span>tw<span class="sc">+</span>tiktok,                </span>
+<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> s1_filter1,<span class="at">family =</span> <span class="st">"binomial"</span>)</span>
+<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a><span class="co">#sharing_interaction_a &lt;- glm(sharing~</span></span>
+<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a> <span class="co">#                  alg_aware*alg_lit_test + </span></span>
+<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>  <span class="co">#                 age+gender+rm+educ_level+</span></span>
+<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a>   <span class="co">#                wsp+ig+fb+yt+tw+tiktok,                  </span></span>
+<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>    <span class="co">#               data = study1_model,family = "binomial")</span></span>
+<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a><span class="co"># lm.beta(exposure_a)</span></span>
+<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a><span class="co">#lm.beta(exposure_filter_a)</span></span>
 <span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a><span class="co"># lm.beta(exposure_a)</span></span>
-<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a><span class="co">#lm.beta(exposure_filter_a)</span></span>
+<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a><span class="co">#effectsize::standardize_parameters(sharing_a)</span></span>
+<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a><span class="co">#effectsize::standardize_parameters(sharing_filter_a)</span></span>
 <span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a><span class="co">#effectsize::standardize_parameters(sharing_a)</span></span>
-<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a><span class="co">#effectsize::standardize_parameters(sharing_filter_a)</span></span>
-<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>sjPlot<span class="sc">::</span><span class="fu">tab_model</span>(<span class="fu">list</span>(exposure_a, exposure_filter_a,</span>
-<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a>                       sharing_a, sharing_filter_a), </span>
-<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a>                  <span class="at">show.ci=</span><span class="cn">FALSE</span>, </span>
-<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a>                  <span class="at">p.style =</span> <span class="st">"stars"</span>, </span>
-<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a>                  <span class="at">dv.labels =</span> <span class="fu">c</span>(<span class="st">"Exposure: Original"</span>,<span class="st">"Exposure: Alg == 1"</span>,</span>
-<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"Sharing: Original"</span>, <span class="st">"Sharing: Alg == 1"</span>),</span>
-<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a>                  <span class="at">string.est =</span> <span class="fu">c</span>(<span class="st">"β (OLS/Logit)"</span>),</span>
-<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>                  <span class="at">pred.labels =</span> <span class="fu">c</span>(<span class="st">"(Intercept)"</span>,</span>
-<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"Alg. Awareness"</span>,</span>
-<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"Age"</span>,</span>
-<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"Gender (Women = 1)"</span>,</span>
-<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"Region (MR = 1)"</span>, </span>
-<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"Educational level"</span>,</span>
-<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"Whatsapp weekly use"</span>, </span>
-<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"Instagram weekly use"</span>, </span>
-<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"Facebook weekly use"</span>, </span>
-<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"Youtube weekly use"</span>, </span>
-<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"Twitter weekly use"</span>, </span>
-<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"TikTok weekly use"</span>),</span>
-<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a>                  <span class="at">title =</span> <span class="st">"Table X. Comparative models study 1 (Filter Alg. Lit.)"</span>,</span>
-<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a>                  <span class="at">transform =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a>sjPlot<span class="sc">::</span><span class="fu">tab_model</span>(<span class="fu">list</span>(exposure_a, exposure_filter_a,</span>
+<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a>                       sharing_a, sharing_filter_a), </span>
+<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a>                  <span class="at">show.ci=</span><span class="cn">FALSE</span>, </span>
+<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>                  <span class="at">p.style =</span> <span class="st">"stars"</span>, </span>
+<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a>                  <span class="at">dv.labels =</span> <span class="fu">c</span>(<span class="st">"Exposure: Original"</span>,<span class="st">"Exposure: Alg == 1"</span>,</span>
+<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"Sharing: Original"</span>, <span class="st">"Sharing: Alg == 1"</span>),</span>
+<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a>                  <span class="at">string.est =</span> <span class="fu">c</span>(<span class="st">"β (OLS/Logit)"</span>),</span>
+<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a>                  <span class="at">pred.labels =</span> <span class="fu">c</span>(<span class="st">"(Intercept)"</span>,</span>
+<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"Alg. Awareness"</span>,</span>
+<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"Age"</span>,</span>
+<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"Gender (Women = 1)"</span>,</span>
+<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"Region (MR = 1)"</span>, </span>
+<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"Educational level"</span>,</span>
+<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"Whatsapp weekly use"</span>, </span>
+<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"Instagram weekly use"</span>, </span>
+<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"Facebook weekly use"</span>, </span>
+<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"Youtube weekly use"</span>, </span>
+<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"Twitter weekly use"</span>, </span>
+<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a>                                  <span class="st">"TikTok weekly use"</span>),</span>
+<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a>                  <span class="at">title =</span> <span class="st">"Table X. Comparative models study 1 (Filter Alg. Lit.)"</span>,</span>
+<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a>                  <span class="at">transform =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>Table X. Comparative models study 1 (Filter Alg. Lit.)</caption>
