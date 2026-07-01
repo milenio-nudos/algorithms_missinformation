@@ -93,10 +93,11 @@ study1 <- study1 %>%
 study2 <- study2 %>%
   mutate(
     sharing_original = ifelse(is.na(sharing_original), NA, sharing_original)
-    )
+    )%>%
+  filter(alg_lit == 1)
 
 study1_model <- study1|>
-  mutate_at(.vars = vars(gender,rm, sharing_categorical),
+  mutate_at(.vars = vars(gender, rm, sharing_categorical),
             .funs = list(~to_label(.)))|>
   mutate_at(.vars = vars(ppal_ocupation,educ_level),
             .funs = list(~to_numeric(.)))
@@ -130,7 +131,6 @@ sharing_a_original <- lm(
 sjPlot::tab_model(
   list(exposure_a, sharing_a_original),
   show.ci = FALSE,
-  p.style = "stars",
   dv.labels = c("Exposure", "Sharing"),
   pred.labels = c(
     "(Intercept)",
@@ -178,7 +178,6 @@ score_model <- lm(subj_know_def ~ alg_aware+counteract_algorithm+
 
 sjPlot::tab_model(exposure_3b,obj_know_model,subj_know_model,score_model,
           show.ci = FALSE,
-          p.style = "stars",
           dv.labels = c("Perceived Misinformation Exposure",
                         "Objective news knowledge",
                         "Subjective news knowledge",
@@ -222,35 +221,26 @@ sjPlot::tab_model(
   ),
   show.ci = FALSE,
   show.se = TRUE,
-  p.style = "stars",
   dv.labels = c(
     "Sharing Study 2 Categorical (Multinomial)"
   ),
   pred.labels = c(
     "(Intercept)",
     "Alg. Awareness",
-    "Alg. Awareness",
-    "Age",
+    "Alg. counteractions",
     "Age",
     "Gender (Women = 1)",
-    "Gender (Women = 1)",
-    "Region (MR = 1)",
     "Region (MR = 1)",
     "Educational level",
-    "Educational level",
-    "Whatsapp weekly use",
     "Whatsapp weekly use",
     "Instagram weekly use",
-    "Instagram weekly use",
-    "Facebook weekly use",
     "Facebook weekly use",
     "Youtube weekly use",
-    "Youtube weekly use",
     "Twitter weekly use",
-    "Twitter weekly use",
-    "TikTok weekly use",
     "TikTok weekly use"
   ),
+  string.est = "b (logit)",
+  transform = NULL,
   title = "Sharing study 2"
 )
 ```
@@ -258,100 +248,75 @@ sjPlot::tab_model(
 # Table A1. Descriptive Statistics of Study 1 Variables.
 
 ```{r}
+library(dplyr)
 library(knitr)
+library(tibble)
+library(sjlabelled)
 
-data.frame(
-  variable = c(
-    "Perceived misinformation exposure",
-    "Perceived misinformation sharing",
-    "Algorithmic Awareness",
-    "Weekly Whatsapp use",
-    "Weekly Instagram use",
-    "Weekly Facebook use",
-    "Weekly Youtube use",
-    "Weekly Twitter use",
-    "Weekly Tiktok use",
-    "Age (continuous)",
-    "Gender",
-    "Metropolitan region",
-    "Educational level"
-  ),
-  
-  descr = c(
-    paste0(round(mean(study1$exposure, na.rm = TRUE), 2), " (", round(sd(study1$exposure, na.rm = TRUE), 2), ")"),
-    paste0(round(mean(study1$sharing, na.rm = TRUE), 2), " (", round(sd(study1$sharing, na.rm = TRUE), 2), ")"),
-    paste0(round(mean(study1$alg_aware, na.rm = TRUE), 2), " (", round(sd(study1$alg_aware, na.rm = TRUE), 2), ")"),
-    paste("1:", sum(study1$wsp == 1), "0:", sum(study1$wsp == 0)),
-    paste("1:", sum(study1$ig == 1), "0:", sum(study1$ig == 0)),
-    paste("1:", sum(study1$fb == 1), "0:", sum(study1$fb == 0)),
-    paste("1:", sum(study1$yt == 1), "0:", sum(study1$yt == 0)),
-    paste("1:", sum(study1$tw == 1), "0:", sum(study1$tw == 0)),
-    paste("1:", sum(study1$tiktok == 1), "0:", sum(study1$tiktok == 0)),
-    paste0(round(mean(study1$age, na.rm = TRUE), 2), " (", round(sd(study1$age, na.rm = TRUE), 2), ")"),
-    paste("Female:", sum(study1$gender == 0), "Male:", sum(study1$gender == 1)),
-    paste("Rm:", sum(study1$rm == 1), "Other:", sum(study1$rm == 0)),
-    paste("Primary education or less:", sum(study1$educ_level == 1, na.rm = TRUE),
-          "Incomplete secondary education:", sum(study1$educ_level == 2, na.rm = TRUE),
-          "Complete secondary education:", sum(study1$educ_level == 3, na.rm = TRUE),
-          "Post-secondary/technical education:", sum(study1$educ_level == 4, na.rm = TRUE),
-          "College education or more:", sum(study1$educ_level == 5, na.rm = TRUE)
-          )
-  ),
-  
-  min = round(c(
-    min(study1$exposure, na.rm = TRUE),
-    min(study1$sharing, na.rm = TRUE),
-    min(study1$alg_aware, na.rm = TRUE),
-    min(study1$wsp, na.rm = TRUE),
-    min(study1$ig, na.rm = TRUE),
-    min(study1$fb, na.rm = TRUE),
-    min(study1$yt, na.rm = TRUE),
-    min(study1$tw, na.rm = TRUE),
-    min(study1$tiktok, na.rm = TRUE),
-    min(study1$age, na.rm = TRUE),
-    min(study1$gender, na.rm = TRUE),
-    min(study1$rm, na.rm = TRUE),
-    min(study1$educ_level, na.rm = TRUE)
-  ), 2),
-    
-  max = round(c(
-    max(study1$exposure, na.rm = TRUE),
-    max(study1$sharing, na.rm = TRUE),
-    max(study1$alg_aware, na.rm = TRUE),
-    max(study1$wsp, na.rm = TRUE),
-    max(study1$ig, na.rm = TRUE),
-    max(study1$fb, na.rm = TRUE),
-    max(study1$yt, na.rm = TRUE),
-    max(study1$tw, na.rm = TRUE),
-    max(study1$tiktok, na.rm = TRUE),
-    max(study1$age, na.rm = TRUE),
-    max(study1$gender, na.rm = TRUE),
-    max(study1$rm, na.rm = TRUE),
-    max(study1$educ_level, na.rm = TRUE)
-  ), 2),
-  
-  cronbach = c("", "",
-               round(psych::alpha(study1[, c("content_filt", "human_int", "ethic")])$total$raw_alpha, 2),
-               "", "", "", "", "", "", "", "", "", ""),
-  
-  missing = c(
-    paste0(round(sum(is.na(study1$exposure)) / nrow(study1) * 100, 2), "%"),
-    paste0(round(sum(is.na(study1$sharing)) / nrow(study1) * 100, 2), "%"),
-    paste0(round(sum(is.na(study1$alg_aware)) / nrow(study1) * 100, 2), "%"),
-    paste0(round(sum(is.na(study1$wsp)) / nrow(study1) * 100, 2), "%"),
-    paste0(round(sum(is.na(study1$ig)) / nrow(study1) * 100, 2), "%"),
-    paste0(round(sum(is.na(study1$fb)) / nrow(study1) * 100, 2), "%"),
-    paste0(round(sum(is.na(study1$yt)) / nrow(study1) * 100, 2), "%"),
-    paste0(round(sum(is.na(study1$tw)) / nrow(study1) * 100, 2), "%"),
-    paste0(round(sum(is.na(study1$tiktok)) / nrow(study1) * 100, 2), "%"),
-    paste0(round(sum(is.na(study1$age)) / nrow(study1) * 100, 2), "%"),
-    paste0(round(sum(is.na(study1$gender)) / nrow(study1) * 100, 2), "%"),
-    paste0(round(sum(is.na(study1$rm)) / nrow(study1) * 100, 2), "%"),
-    paste0(round(sum(is.na(study1$educ_level)) / nrow(study1) * 100, 2), "%")
-  )
-) |>
+# Variables A1: TODAS continuas (incluye sharing)
+vars_cont_a1 <- c(
+  "exposure",
+  "sharing_original",
+  "alg_aware",
+  "wsp",
+  "ig",
+  "fb",
+  "yt",
+  "tw",
+  "tiktok",
+  "age",
+  "gender",
+  "rm",
+  "educ_level"
+)
+
+labels_cont_a1 <- c(
+  "Perceived misinformation exposure",
+  "Perceived misinformation sharing (continuous)",
+  "Algorithmic awareness",
+  "Weekly Whatsapp use",
+  "Weekly Instagram use",
+  "Weekly Facebook use",
+  "Weekly Youtube use",
+  "Weekly Twitter use",
+  "Weekly Tiktok use",
+  "Age (continuous)",
+  "Gender",
+  "Metropolitan region",
+  "Educational level"
+)
+
+# Convertir haven_labelled/factor a numérico para resumir como continuo
+study1_num <- study1 |>
+  mutate(across(all_of(vars_cont_a1), ~ to_numeric(.x)))
+
+table_a1 <- tibble(var = vars_cont_a1, variable = labels_cont_a1) |>
+  rowwise() |>
+  mutate(
+    descr = paste0(
+      round(mean(study1_num[[var]], na.rm = TRUE), 2),
+      " (",
+      round(sd(study1_num[[var]], na.rm = TRUE), 2),
+      ")"
+    ),
+    min = round(min(study1_num[[var]], na.rm = TRUE), 2),
+    max = round(max(study1_num[[var]], na.rm = TRUE), 2),
+    cronbach = "",
+    missing = paste0(round(mean(is.na(study1_num[[var]])) * 100, 2), "%")
+  ) |>
+  ungroup() |>
+  select(variable, descr, min, max, cronbach, missing)
+
+table_a1 |>
   kable(
-    col.names = c("Variable", "Mean (SD)/Prop.", "Min.", "Max.", "Cronbach's Alpha", "Missings (%)")
+    col.names = c(
+      "Variable",
+      "Mean (SD)",
+      "Min.",
+      "Max.",
+      "Cronbach's Alpha",
+      "Missings (%)"
+    )
   )
 ```
 
@@ -512,118 +477,84 @@ tabla_principal %>%
 
 # Table A3. Summary Study 2 Variables.
 ```{r}
+library(dplyr)
+library(knitr)
+library(tibble)
 
-data.frame(
-  variable = c(
-    "Perceived misinformation exposure",
-    "Perceived misinformation sharing",
-    "Objective news knowledge",
-    "Subjective news knowledge",
-    "Overconfidence knowledge",
-    "Algorithmic Awareness",
-    "Algorithmic actions/counteractions",
-    "Weekly Whatsapp use",
-    "Weekly Instagram use",
-    "Weekly Facebook use",
-    "Weekly Youtube use",
-    "Weekly Twitter use",
-    "Weekly Tiktok use",
-    "Age (continuous)",
-    "Gender",
-    "Metropolitan region",
-    "Educational level"
-  ),
-  
-  descr = c(
-    paste0(round(mean(study2$exposure, na.rm = TRUE), 2), " (", round(sd(study2$exposure, na.rm = TRUE), 2), ")"),
-    paste0(round(mean(study2$sharing, na.rm = TRUE), 2), " (", round(sd(study2$sharing, na.rm = TRUE), 2), ")"),
-    paste0(round(mean(study2$alg_aware, na.rm = TRUE), 2), " (", round(sd(study2$alg_aware, na.rm = TRUE), 2), ")"),
-    paste0(round(mean(study2$counteract_algorithm, na.rm = TRUE), 2), " (", round(sd(study2$counteract_algorithm, na.rm = TRUE), 2), ")"),
-    paste0(round(mean(study2$obj_know, na.rm = TRUE), 2), " (", round(sd(study2$exposure, na.rm = TRUE), 2), ")"),
-    paste0(round(mean(study2$subj_know, na.rm = TRUE), 2), " (", round(sd(study2$exposure, na.rm = TRUE), 2), ")"),
-    paste0(round(mean(study2$subj_know_def, na.rm = TRUE), 2), " (", round(sd(study2$exposure, na.rm = TRUE), 2), ")"),
-    paste("1:", sum(study2$wsp == 1, na.rm = TRUE), "0:", sum(study2$wsp == 0, na.rm = TRUE)),
-    paste("1:", sum(study2$ig == 1, na.rm = TRUE), "0:", sum(study2$ig == 0, na.rm = TRUE)),
-    paste("1:", sum(study2$fb == 1, na.rm = TRUE), "0:", sum(study2$fb == 0, na.rm = TRUE)),
-    paste("1:", sum(study2$yt == 1, na.rm = TRUE), "0:", sum(study2$yt == 0, na.rm = TRUE)),
-    paste("1:", sum(study2$tw == 1, na.rm = TRUE), "0:", sum(study2$tw == 0, na.rm = TRUE)),
-    paste("1:", sum(study2$tiktok == 1, na.rm = TRUE), "0:", sum(study2$tiktok == 0, na.rm = TRUE)),
-    paste0(round(mean(study2$age, na.rm = TRUE), 2), " (", round(sd(study2$age, na.rm = TRUE), 2), ")"),
-    paste("Female:", sum(study2$gender == 0), "Male:", sum(study2$gender == 1)),
-    paste("Rm:", sum(study2$rm == 1), "Other:", sum(study2$rm == 0)),
-    paste("Primary education or less:", sum(study2$educ_level == 1, na.rm = TRUE),
-          "Incomplete secondary education:", sum(study2$educ_level == 2, na.rm = TRUE),
-          "Complete secondary education:", sum(study2$educ_level == 3, na.rm = TRUE),
-          "Post-secondary/technical education:", sum(study2$educ_level == 4, na.rm = TRUE),
-          "College education or more:", sum(study2$educ_level == 5, na.rm = TRUE)
-          )
-  ),
-  
-  min = round(c(
-    min(study2$exposure, na.rm = TRUE),
-    min(study2$sharing, na.rm = TRUE),
-    min(study2$obj_know, na.rm = TRUE),
-    min(study2$subj_know, na.rm = TRUE),
-    min(study2$subj_know_def, na.rm = TRUE),
-    min(study2$alg_aware, na.rm = TRUE),
-    min(study2$counteract_algorithm, na.rm = TRUE),
-    min(study2$wsp, na.rm = TRUE),
-    min(study2$ig, na.rm = TRUE),
-    min(study2$fb, na.rm = TRUE),
-    min(study2$yt, na.rm = TRUE),
-    min(study2$tw, na.rm = TRUE),
-    min(study2$tiktok, na.rm = TRUE),
-    min(study2$age, na.rm = TRUE),
-    min(study2$gender, na.rm = TRUE),
-    min(study2$rm, na.rm = TRUE),
-    min(study2$educ_level, na.rm = TRUE)
-  ), 2),
-    
-  max = round(c(
-    max(study2$exposure, na.rm = TRUE),
-    max(study2$sharing, na.rm = TRUE),
-    max(study2$obj_know, na.rm = TRUE),
-    max(study2$subj_know, na.rm = TRUE),
-    max(study2$subj_know_def, na.rm = TRUE),
-    max(study2$alg_aware, na.rm = TRUE),
-    max(study2$counteract_algorithm, na.rm = TRUE),
-    max(study2$wsp, na.rm = TRUE),
-    max(study2$ig, na.rm = TRUE),
-    max(study2$fb, na.rm = TRUE),
-    max(study2$yt, na.rm = TRUE),
-    max(study2$tw, na.rm = TRUE),
-    max(study2$tiktok, na.rm = TRUE),
-    max(study2$age, na.rm = TRUE),
-    max(study2$gender, na.rm = TRUE),
-    max(study2$rm, na.rm = TRUE),
-    max(study2$educ_level, na.rm = TRUE)
-  ), 2),
-  
-  cronbach = c("", "", "", 
-               round(psych::alpha(study2[, c("p40", "p42", "p44", "p46", "p48", "p50")])$total$raw_alpha, 2),
-               round(psych::alpha(study2[, c("content_filt", "human_int", "ethic")])$total$raw_alpha, 2),
-               "", "", "", "", "", "", "", "", "", "", "", ""),
-  
-  missing = c(
-    paste0(round(sum(is.na(study2$exposure)) / nrow(study2) * 100, 2), "%"),
-    paste0(round(sum(is.na(study2$sharing)) / nrow(study2) * 100, 2), "%"),
-    paste0(round(sum(is.na(study2$obj_know)) / nrow(study2) * 100, 2), "%"),
-    paste0(round(sum(is.na(study2$subj_know)) / nrow(study2) * 100, 2), "%"),
-    paste0(round(sum(is.na(study2$subj_know_def)) / nrow(study2) * 100, 2), "%"),
-    paste0(round(sum(is.na(study2$alg_aware)) / nrow(study2) * 100, 2), "%"),
-    paste0(round(sum(is.na(study2$counteract_algorithm)) / nrow(study2) * 100, 2), "%"),
-    paste0(round(sum(is.na(study2$wsp)) / nrow(study2) * 100, 2), "%"),
-    paste0(round(sum(is.na(study2$ig)) / nrow(study2) * 100, 2), "%"),
-    paste0(round(sum(is.na(study2$fb)) / nrow(study2) * 100, 2), "%"),
-    paste0(round(sum(is.na(study2$yt)) / nrow(study2) * 100, 2), "%"),
-    paste0(round(sum(is.na(study2$tw)) / nrow(study2) * 100, 2), "%"),
-    paste0(round(sum(is.na(study2$tiktok)) / nrow(study2) * 100, 2), "%"),
-    paste0(round(sum(is.na(study2$age)) / nrow(study2) * 100, 2), "%"),
-    paste0(round(sum(is.na(study2$gender)) / nrow(study2) * 100, 2), "%"),
-    paste0(round(sum(is.na(study2$rm)) / nrow(study2) * 100, 2), "%"),
-    paste0(round(sum(is.na(study2$educ_level)) / nrow(study2) * 100, 2), "%")
-  )
-) |>
+# Variables continuas para A3 (todas salvo sharing)
+vars_cont <- c(
+  "exposure",
+  "obj_know",
+  "subj_know",
+  "subj_know_def",
+  "alg_aware",
+  "counteract_algorithm",
+  "wsp", "ig", "fb", "yt", "tw", "tiktok",
+  "age", "gender", "rm", "educ_level"
+)
+
+labels_cont <- c(
+  "Perceived misinformation exposure",
+  "Objective news knowledge",
+  "Subjective news knowledge",
+  "Overconfidence knowledge",
+  "Algorithmic Awareness",
+  "Algorithmic actions/counteractions",
+  "Weekly Whatsapp use",
+  "Weekly Instagram use",
+  "Weekly Facebook use",
+  "Weekly Youtube use",
+  "Weekly Twitter use",
+  "Weekly Tiktok use",
+  "Age (continuous)",
+  "Gender",
+  "Metropolitan region",
+  "Educational level"
+)
+
+a3_cont <- tibble(var = vars_cont, variable = labels_cont) |>
+  rowwise() |>
+  mutate(
+    descr = paste0(
+      round(mean(study2[[var]], na.rm = TRUE), 2),
+      " (", round(sd(study2[[var]], na.rm = TRUE), 2), ")"
+    ),
+    min = round(min(study2[[var]], na.rm = TRUE), 2),
+    max = round(max(study2[[var]], na.rm = TRUE), 2),
+    cronbach = "",
+    missing = paste0(round(mean(is.na(study2[[var]])) * 100, 2), "%")
+  ) |>
+  ungroup() |>
+  select(variable, descr, min, max, cronbach, missing)
+
+# sharing_categorical: frecuencias por categoría
+sharing_freq <- study2 |>
+  filter(!is.na(sharing_categorical)) |>
+  count(sharing_categorical, name = "n") |>
+  mutate(
+    pct = round(100 * n / sum(n), 1),
+    item = paste0(sharing_categorical, ": ", n, " (", pct, "%)")
+  ) |>
+  summarise(txt = paste(item, collapse = "; ")) |>
+  pull(txt)
+
+sharing_row <- tibble(
+  variable = "Perceived misinformation sharing (categorical)",
+  descr = sharing_freq,
+  min = NA_real_,
+  max = NA_real_,
+  cronbach = "",
+  missing = paste0(round(mean(is.na(study2$sharing_categorical)) * 100, 2), "%")
+)
+
+# Insertar sharing como segunda fila
+table_a3 <- bind_rows(
+  a3_cont |> slice(1),
+  sharing_row,
+  a3_cont |> slice(2:n())
+)
+
+table_a3 |>
   kable(
     col.names = c("Variable", "Mean (SD)/Prop.", "Min.", "Max.", "Cronbach's Alpha", "Missings (%)")
   )
@@ -710,6 +641,4 @@ sjPlot::tab_model(list(exposure_a, exposure_filter_a,
                                   "TikTok weekly use"),
                   title = "Table X. Comparative models study 1 (Filter Alg. Lit.)",
                   transform = NULL)
-
-
 ```
